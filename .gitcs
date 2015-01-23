@@ -7,7 +7,8 @@ git add README.md                                         # datei README.md hinz
 git commit -m "first commit"                              # version "first commit" festlegen
 git remote add origin https://github.com/keiner/asdf.git  # ordner mit github verbinden
 git push -u origin maste                                  # alle hinzugefügten dateien pushen
-
+git remote rm origin 					  # origin entfernen
+git remote show						  # remote verbindungen anzeigen
 
 
 

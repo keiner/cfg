@@ -1,4 +1,5 @@
-name: TEST root: ~/work/test
+name: TEST 
+root: ~/work/test
 
 ## LAYOUTS
 #even-horizontal
@@ -9,24 +10,27 @@ name: TEST root: ~/work/test
 
 
 windows:
-  - TMUXINATOR:
-      layout: main-vertical
+  - TMUXINATOR: 
+      layout: 52fd,94x47,0,0{50x47,0,0[50x33,0,0,0,50x13,0,34,10],43x47,51,0,4}
       panes: 
       - cd && cd .tmuxinator && vim test.yml 
+      - clear
       - cd && cd .tmuxinator && tcf 
   - ALIAS:
-      layout: main-vertical
+      layout:  52fd,94x47,0,0{50x47,0,0[50x33,0,0,0,50x13,0,34,10],43x47,51,0,4}
       panes: 
-      - cd && ölkj && gitcs 
-      - cd && ölkj &&  ali 
+      - cd && clear && gitcs 
+      -    
+      - cd && clear && ali
   - PI:
       layout: tiled
       panes: 
-      - ölkj && sshpi 
-  - zsh :
+      - clear && sshpi 
+  - zsh:
       layout: tiled
       panes: 
-      - ölkj && top
-      - ölkj && allip
-      - ölkj && sshpi
+      - clear && top
+      - clear && allip
+      - clear && sshpi
       - 
+

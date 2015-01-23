@@ -1,7 +1,7 @@
 " Kommentare werden mit " Eingeleitet
 "Allgemeine Einstellungen
 :set number  "Zeilennummerierung ein
-:set langmap=jklö;hjkl	"hjkl auf jklö ändern
+":set langmap=jklö;hjkl	"hjkl auf jklö ändern
 :syntax on "Aktiviert Syntax-Highlighting 
 :set spelllang=de,en spell "Sprache
 :colorscheme delek "Farbschema einstellen
