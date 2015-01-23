@@ -4,3 +4,9 @@ This is my trial to balance all self written configuration files for the Linux c
  - vim
  - latex
  - zsh
+
+
+file types 
+
+ - rc/.conf  = configuration file
+ - cs        = cheat sheet 
