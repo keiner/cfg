@@ -1,0 +1,33 @@
+name: TEST 
+root: ~/work/test
+
+## LAYOUTS
+#even-horizontal
+#even-vertical
+#main-horizontal
+#main-vertical
+#tiled
+
+
+windows:
+  - TMUXINATOR:
+      layout: main-vertical
+      panes: 
+      - cd && cd .tmuxinator && vim test.yml 
+      - cd && cd .tmuxinator && tcf 
+  - ALIAS:
+      layout: main-vertical
+      panes: 
+      - cd && gitcs 
+      - cd && ali 
+  - PI:
+      layout: tiled
+      panes: 
+      - sshpi 
+  - zsh :
+      layout: tiled
+      panes: 
+      - top
+      - allip
+      - sshpi
+      - 
