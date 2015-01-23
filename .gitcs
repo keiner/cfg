@@ -1,0 +1,18 @@
+
+####### create a new repository on the command line
+###############################################
+
+git init                                                  # git für diesen ordner aktivieren
+git add README.md                                         # datei README.md hinzufügen
+git commit -m "first commit"                              # version "first commit" festlegen
+git remote add origin https://github.com/keiner/asdf.git  # ordner mit github verbinden
+git push -u origin maste                                  # alle hinzugefügten dateien pushen
+
+
+
+
+…or push an existing repository from the command line
+##################################
+
+git remote add origin https://github.com/keiner/asdf.git
+git push -u origin master
