@@ -1,5 +1,4 @@
-name: TEST 
-root: ~/work/test
+name: TEST root: ~/work/test
 
 ## LAYOUTS
 #even-horizontal
@@ -18,16 +17,16 @@ windows:
   - ALIAS:
       layout: main-vertical
       panes: 
-      - cd && gitcs 
-      - cd && ali 
+      - cd && ölkj && gitcs 
+      - cd && ölkj &&  ali 
   - PI:
       layout: tiled
       panes: 
-      - sshpi 
+      - ölkj && sshpi 
   - zsh :
       layout: tiled
       panes: 
-      - top
-      - allip
-      - sshpi
+      - ölkj && top
+      - ölkj && allip
+      - ölkj && sshpi
       - 
