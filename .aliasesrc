@@ -1,0 +1,75 @@
+#### RASPBERRY-PI
+alias sshpi='ssh pi@192.168.1.37'
+alias vncpi='krdc 192.168.1.37:1'
+alias mntpihome='sshfs pi@raspberrypi:/home/pi ~/work/mnt/pihome/'
+alias mntpi='sshfs pi@raspberrypi:/ ~/work/mnt/pi/'
+alias keinpi='fusermount -u ~/work/mnt/pi/'
+alias keinpihome='fusermount -u ~/work/mnt/pihome/'
+#### Update und installieren
+alias sagi='sudo apt-get install'
+alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get update'
+alias lisa='ls -lisa'
+
+##### NETZWERK
+alias allip='ip neigh show ' # zeigt alle ips im netzwerk
+
+##### GIT/GITHUB
+           
+
+
+#### TMUX/TMUXINATOR
+alias mux='tmuxinator'
+alias tk="tmux kill-server"
+alias tax="tmux attach"
+##### AKTUALISIEREN
+alias fex='exec fish -$-'
+alias bex='exec bash -$-'
+alias zex='exec zsh -$-'
+alias texec='tmux source-file ~/.tmux.conf'
+
+##### CONFIG/RC 
+alias zrc='vim ~/.zshrc'
+alias brc='vim ~/.bashrc'
+alias frc='vim ~/.fishrc'
+alias tcf='vim ~/.tmux.conf'
+alias vrc='vim ~/.vimrc'
+alias ali='vim ~/.aliasesrc'
+
+##### SHELL SPECIAL
+alias asdf='exit'
+alias ölkj='clear'
+
+#### CHEAT SHEETS
+alias tcs='vim ~/.tmuxcs'
+alias vcs='vim ~/.vimcs'
+alias zcs='vim ~/.zcs'
+alias gitcs='vim ~/.gitcs'
+
+#### KOMMENTARE
+alias juchu='echo juchu es klappt'
+
+
+#### SICHERUNG
+alias verteilen='mkdir -p /media/$USER/USB-DATEN/sicherung/verteiler/ && 
+		cp -b /home/$USER/.*rc /media/$USER/USB-DATEN/sicherung/verteiler/ && 
+		cp -b /home/$USER/.*.conf /media/$USER/USB-DATEN/sicherung/verteiler/
+		cp -b /home/$USER/.vim/spell/de.utf-8.* /media/$USER/USB-DATEN/sicherung/verteiler/'
+
+alias übernehmen='cp -b /media/$USER/USB-DATEN/sicherung/verteiler/.*rc /home/$USER/ 
+		cp -b /media/$USER/USB-DATEN/sicherung/verteiler/.*.conf /home/$USER/
+		cp -b /media/$USER/USB-DATEN/sicherung/verteiler/de.utf-8.* ~/.vim/spell/' 
+alias sichern='vorbereitung && bootloader && mbr && tabelle && rc_sichern && cfg_sichern && spell_sichern'
+alias bootloader='sudo dd if=/dev/sda of=/media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/bootloader_sda bs=446 count=1'
+alias mbr='sudo dd if=/dev/sda of=/media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/mbr_sda bs=512 count=1'
+alias tabelle='sudo sfdisk -d /dev/sda > /media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/partitionstabelle_sda'
+alias rc_sichern='cp -b /home/$USER/.*rc /media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/'
+alias cfg_sichern='cp -b /home/$USER/.*.conf /media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/'
+alias spell_sichern='cp -b /home/$USER/.vim/spell/de.utf-8.* /media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/'
+alias vorbereitung='sudo mkdir -p /media/$USER/USB-DATEN/sicherung/$USER/
+			mkdir -p /media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/'
+
+
+####TESTS
+alias doof='echo "sag ja" 
+read name
+echo $name'
