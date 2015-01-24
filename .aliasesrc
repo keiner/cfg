@@ -20,6 +20,7 @@ alias gc="git commit -m"
 alias gp="git push -u origin master"          
 #git remote add origin https://github.com/keiner/asdf.git
 alias gitig="vim ~/.gitignore"
+alias gstat="git status"
 
 #### TMUX/TMUXINATOR
 alias mux='tmuxinator'
