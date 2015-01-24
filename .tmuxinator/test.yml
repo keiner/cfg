@@ -16,11 +16,12 @@ windows:
       - cd && cd .tmuxinator && vim test.yml 
       - cd && tlist 
       - cd && cd .tmuxinator && tcf 
-  - ALIAS:
-      layout:  52fd,94x47,0,0{50x47,0,0[50x33,0,0,0,50x13,0,34,10],43x47,51,0,4}
+  - GIT/ALIAS :
+      layout: 955a,117x56,0,0{62x56,0,0[62x28,0,0,1,62x13,0,29,6,62x13,0,43,11],54x56,63,0,7} 
       panes: 
       - cd && clear && gitcs 
-      -    
+      - cd && git status
+      - cd && clear   
       - cd && clear && ali
   - PI:
       layout: tiled
