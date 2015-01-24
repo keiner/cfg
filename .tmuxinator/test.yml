@@ -14,7 +14,7 @@ windows:
       layout: 52fd,94x47,0,0{50x47,0,0[50x33,0,0,0,50x13,0,34,10],43x47,51,0,4}
       panes: 
       - cd && cd .tmuxinator && vim test.yml 
-      - clear
+      - cd && tlist 
       - cd && cd .tmuxinator && tcf 
   - ALIAS:
       layout:  52fd,94x47,0,0{50x47,0,0[50x33,0,0,0,50x13,0,34,10],43x47,51,0,4}

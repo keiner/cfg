@@ -24,6 +24,7 @@ alias gp="git push -u origin master"
 alias mux='tmuxinator'
 alias tk="tmux kill-server"
 alias tax="tmux attach"
+alias tlist="tmux list-windows"
 
 ##### AKTUALISIEREN
 alias fex='exec fish -$-'
