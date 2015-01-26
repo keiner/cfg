@@ -51,7 +51,7 @@ alias tcs='vim ~/.tmuxcs'
 alias vcs='vim ~/.vimcs'
 alias zcs='vim ~/.zcs'
 alias gitcs='vim ~/.gitcs'
-
+alias merk="vim ~/.merkzettel"
 #### KOMMENTARE
 alias juchu='echo juchu es klappt'
 
