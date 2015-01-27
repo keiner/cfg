@@ -13,25 +13,29 @@ windows:
   - TMUXINATOR: 
       layout: 52fd,94x47,0,0{50x47,0,0[50x33,0,0,0,50x13,0,34,10],43x47,51,0,4}
       panes: 
-      - cd && cd .tmuxinator && vim test.yml 
-      - cd && tlist 
-      - cd && cd .tmuxinator && tcf 
+      - clear && cd && cd .tmuxinator && vim test.yml 
+      - clear && cd && tlist 
+      - clear && cd && cd .tmuxinator && tcf 
   - GIT/ALIAS :
       layout: 955a,117x56,0,0{62x56,0,0[62x28,0,0,1,62x13,0,29,6,62x13,0,43,11],54x56,63,0,7} 
       panes: 
-      - cd && clear && gitcs 
-      - cd && git status
-      - cd && clear   
-      - cd && clear && ali
+      - clear && cd && gitcs 
+      - clear && cd && git status
+      - clear && cd     
+      - clear && cd && ali
   - PI:
       layout: tiled
       panes: 
       - clear && sshpi 
   - zsh:
-      layout: tiled
+      layout: 89c9,117x55,0,0[117x27,0,0,3,117x28,0,28{58x28,0,28,11,58x28,59,28,12}]
       panes: 
-      - clear && top
+      - clear && htop
       - clear && allip
       - clear && sshpi
-      - 
-
+  - LATEX:
+      layout: 8b08,117x55,0,0[117x12,0,0{58x12,0,0,4,58x12,59,0,16},117x43,0,13,14] 
+      panes:
+      - clear && cd .. && clear
+      - clear && cd /home/keiner/Vorlagen/LATEX && ls
+      - clear && cd .. && clear
