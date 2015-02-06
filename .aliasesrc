@@ -2,6 +2,7 @@
 alias sshpi='ssh pi@192.168.1.37'
 alias vncpi='krdc 192.168.1.37:1'
 alias mntpihome='sshfs pi@raspberrypi:/home/pi ~/work/mnt/pihome/'
+alias usbpi='sshfs pi@raspberrypi:/media/usb0 ~/work/mnt/usbpi/'
 alias mntpi='sshfs pi@raspberrypi:/ ~/work/mnt/pi/'
 alias keinpi='fusermount -u ~/work/mnt/pi/'
 alias keinpihome='fusermount -u ~/work/mnt/pihome/'

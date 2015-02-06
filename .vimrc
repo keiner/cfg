@@ -35,8 +35,9 @@ let g:Tex_CompileRule_pdf = 'mkdir -p out && pdflatex -output-directory=_out -in
 "let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*'
 let g:Tex_GotoError = 0
 let g:Tex_ViewRule_pdf = 'evince' 
-
+let g:LatexBox_complete_inlineMath = 1
 
 """"""""Autovervollständigung
 ":abbreviate ABKÜRZUNG ERGEBNIS
 :abbreviate uu ubuntu-users
+:abbreviate lagra "\includegraphics[scale=1]{BILDNAME}"
