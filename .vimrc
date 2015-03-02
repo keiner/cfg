@@ -10,8 +10,8 @@
 :set hlsearch "Markiert alle Such Ergebnisse
 :set wildmenu "Akt vervollständigung im menu
 filetype on
-
-
+:let mapleader = ","
+execute pathogen#infect()
 
 """""""""""""""""
 """""LATEX"""""""
@@ -41,3 +41,8 @@ let g:LatexBox_complete_inlineMath = 1
 ":abbreviate ABKÜRZUNG ERGEBNIS
 :abbreviate uu ubuntu-users
 :abbreviate lagra "\includegraphics[scale=1]{BILDNAME}"
+
+"""""""NERDTree 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-n> :NERDTreeTabsToggle<CR>
