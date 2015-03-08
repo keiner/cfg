@@ -57,7 +57,7 @@ let g:tex_flavor='latex'
 "au BufEnter *.tex set autowrite
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats = 'pdf'
-let g:Tex_CompileRule_pdf = 'mkdir -p out && pdflatex -output-directory=_out -interaction=nonstopmode $* && mv out/$*.pdf .'
+"let g:Tex_CompileRule_pdf = 'mkdir -p out && pdflatex -output-directory=_out -interaction=nonstopmode $* && mv out/$*.pdf .'
 let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*'
 let g:Tex_GotoError = 0
 let g:Tex_ViewRule_pdf = 'evince' 
