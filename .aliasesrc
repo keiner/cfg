@@ -46,7 +46,7 @@ alias ali='vim ~/.aliasesrc'
 ##### SHELL SPECIAL
 alias asdf='exit'
 alias ölkj='clear'
-
+alias be='bildschirm extern'
 #### CHEAT SHEETS
 alias tcs='vim ~/.tmuxcs'
 alias vcs='vim ~/.vimcs'
