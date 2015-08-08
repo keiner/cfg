@@ -60,7 +60,7 @@ let g:Tex_MultipleCompileFormats = 'pdf'
 "let g:Tex_CompileRule_pdf = 'mkdir -p out && pdflatex -output-directory=_out -interaction=nonstopmode $* && mv out/$*.pdf .'
 let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*'
 let g:Tex_GotoError = 0
-let g:Tex_ViewRule_pdf = 'evince' 
+let g:Tex_ViewRule_pdf = 'Evince' 
 let g:LatexBox_complete_inlineMath = 1
 set winaltkeys=no
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
