@@ -20,8 +20,8 @@ alias irc="epic5 -c '#h15' elArscho irc.freenode.net:8001"
 alias allip='ip neigh show ' # zeigt alle ips im netzwerk
 
 ##### GIT/GITHUB
-alias ga="git add"
-alias gc="git commit -m"
+alias ga="git add"  #spezifische datei oder "." für alles im ordner wo man ist
+alias gc="git commit -m" #version dahinter schreiben
 alias gp="git push -u origin master"          
 #git remote add origin https://github.com/keiner/asdf.git
 alias gitig="vim ~/.gitignore"
