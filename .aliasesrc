@@ -32,7 +32,9 @@ alias mux='tmuxinator'
 alias tk="tmux kill-server"
 alias tax="tmux attach"
 alias tlist="tmux list-windows"
-
+alias te="tmux detach"
+alias tls="tmux ls"
+alias ta="tmux attach"
 ##### AKTUALISIEREN
 alias fex='exec fish -$-'
 alias bex='exec bash -$-'
@@ -48,7 +50,7 @@ alias vrc='vim ~/.vimrc'
 alias ali='vim ~/.aliasesrc'
 
 ##### SHELL SPECIAL
-alias asdf='exit'
+alias asdf='if [ "$TMUX" = "" ]; then exit; else tmux detach; fi'
 alias ölkj='clear'
 alias be='bildschirm extern'
 alias aus='sudo shutdown -h now'

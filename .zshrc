@@ -86,10 +86,11 @@ if [ -f ~/.aliasesrc ]; then
 fi
 
 # verbindet session und erstellt bei bedarf neue
-#tmux attach || tmux new
 
-#verbindet mit tmuxinator
-#mux test
+if [ -z $TMUX ];   then                 
+	  /usr/bin/tmux attach || /usr/bin/tmux new
+  fi 
+
 
 # standard editor vim
 export EDITOR='vim'
