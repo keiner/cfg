@@ -85,15 +85,22 @@ if [ -f ~/.aliasesrc ]; then
 	. ~/.aliasesrc
 fi
 
-# verbindet session und erstellt bei bedarf neue
+# verbindet tmux session und erstellt bei bedarf neue
 
 if [ -z $TMUX ];   then                 
 	  /usr/bin/tmux attach || /usr/bin/tmux new
   fi 
 
+  
+if [ -f ~/.todo ]; then
+    cat ~/.todo
+fi      
 
+  
+  
 # standard editor vim
 export EDITOR='vim'
 
 PERL_MB_OPT="--install_base \"/home/keiner/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/keiner/perl5"; export PERL_MM_OPT;
+

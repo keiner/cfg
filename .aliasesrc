@@ -54,6 +54,8 @@ alias asdf='if [ "$TMUX" = "" ]; then exit; else tmux detach; fi'
 alias ölkj='clear'
 alias be='bildschirm extern'
 alias aus='sudo shutdown -h now'
+alias c="cat"
+alias todo="vim ~/.todo"
 #### CHEAT SHEETS
 alias tcs='vim ~/.tmuxcs'
 alias vcs='vim ~/.vimcs'
