@@ -87,3 +87,4 @@ alias vorbereitung='sudo mkdir -p /media/$USER/USB-DATEN/sicherung/$USER/ mkdir 
 alias doof='echo "sag ja" 
 read name
 echo $name'
+alias node="nodejs --harmony"
