@@ -71,13 +71,14 @@ set winaltkeys=no
 :syntax on "Aktiviert Syntax-Highlighting 
 :set spelllang=de,en spell "Sprache
 :set background=dark
-:colorscheme solarized "Farbschema einstellen
+":colorscheme solarized "Farbschema einstellen
 :set ignorecase	"Groß/klein bei Suche ignorieren
 :set incsearch "Waehrend eingaben suchen
 :set hlsearch "Markiert alle Such Ergebnisse
 :set wildmenu "Akt vervollständigung im menu
 :let mapleader = ","
 :set mouse=a
+:set list "nicht druckbare zeichen anzeigen(zeilendene,etc)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""AUTO COMPLETE""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

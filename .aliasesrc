@@ -18,6 +18,7 @@ alias irc="epic5 -c '#h15' elArscho irc.freenode.net:8001"
 
 ##### NETZWERK
 alias allip='ip neigh show ' # zeigt alle ips im netzwerk
+alias speed=speedtest-cli
 
 ##### GIT/GITHUB
 alias ga="git add"  #spezifische datei oder "." für alles im ordner wo man ist
@@ -50,18 +51,21 @@ alias vrc='vim ~/.vimrc'
 alias ali='vim ~/.aliasesrc'
 
 ##### SHELL SPECIAL
+alias et="exit"
 alias asdf='if [ "$TMUX" = "" ]; then exit; else tmux detach; fi'
 alias ölkj='clear'
 alias be='bildschirm extern'
 alias aus='sudo shutdown -h now'
 alias c="cat"
 alias todo="vim ~/.todo"
+alias studi="vim ~/.studi"
 #### CHEAT SHEETS
 alias tcs='vim ~/.tmuxcs'
 alias vcs='vim ~/.vimcs'
 alias zcs='vim ~/.zcs'
 alias gitcs='vim ~/.gitcs'
 alias merk="vim ~/.merkzettel"
+alias mucs="vim ~/cheatsheets/mutator"
 #### KOMMENTARE
 alias juchu='echo juchu es klappt'
 
