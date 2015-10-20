@@ -59,6 +59,7 @@ alias aus='sudo shutdown -h now'
 alias c="cat"
 alias todo="vim ~/.todo"
 alias studi="vim ~/.studi"
+alias fsw="vim ~/.fsw"
 #### CHEAT SHEETS
 alias tcs='vim ~/.tmuxcs'
 alias vcs='vim ~/.vimcs'

@@ -40,7 +40,7 @@ execute pathogen#infect()
 """""""""""""""""
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTreeTabsToggle<CR>
+map <C-n> :NERDTree "TabsToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""LATEX"""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,17 +68,24 @@ set winaltkeys=no
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set number  "Zeilennummerierung ein
 ":set langmap=jklö;hjkl	"hjkl auf jklö ändern
-:syntax on "Aktiviert Syntax-Highlighting 
-:set spelllang=de,en spell "Sprache
-:set background=dark
-":colorscheme solarized "Farbschema einstellen
+:syntax enable "Aktiviert Syntax-Highlighting 
+":set spelllang=de,en spell "Sprache
+map <F8>  :setlocal spell spelllang=de,en <return>
+map <F7>  :setlocal spell& <return>
+":set background=dark
+"colorscheme solarized "Farbschema einstellen
 :set ignorecase	"Groß/klein bei Suche ignorieren
-:set incsearch "Waehrend eingaben suchen
+:set incsearch "Während eingaben suchen"
 :set hlsearch "Markiert alle Such Ergebnisse
-:set wildmenu "Akt vervollständigung im menu
+:set wildmenu "Akt Vervollständigung im menu
 :let mapleader = ","
 :set mouse=a
-:set list "nicht druckbare zeichen anzeigen(zeilendene,etc)
+:set list "nicht druckbare Zeichen anzeigen(Zeilenende,etc)
+""""""""""""""""""""""""""""""""""""""""""""
+"""""""""yank&put to strg-c/strg-v""""""""""
+""""""""""""""""""""""""""""""""""""""""""""
+vmap <C-c> "+y
+nmap <C-v> "+p
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""AUTO COMPLETE""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
