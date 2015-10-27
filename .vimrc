@@ -35,6 +35,7 @@ Plugin 'godlygeek/tabular'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
 
+"info unter https://github.com/tpope/vim-pathogen
 
 """""""NERDTree"" 
 """""""""""""""""
