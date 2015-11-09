@@ -101,6 +101,6 @@ fi
 # standard editor vim
 export EDITOR='vim'
 
-PERL_MB_OPT="--install_base \"/home/keiner/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/keiner/perl5"; export PERL_MM_OPT;
+PERL_MB_OPT="--install_base \"/home/$USER/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
 

@@ -60,6 +60,7 @@ alias c="cat"
 alias todo="vim ~/.todo"
 alias studi="vim ~/.studi"
 alias fsw="vim ~/.fsw"
+alias laufwerke="sudo blkid -o list -w /dev/null" 
 #### CHEAT SHEETS
 alias tcs='vim ~/.tmuxcs'
 alias vcs='vim ~/.vimcs'
