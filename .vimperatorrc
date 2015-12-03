@@ -1,0 +1,3 @@
+" ======MAPPING======
+noremap gt :tabprevious<CR>
+noremap gz :tabnext<CR>
