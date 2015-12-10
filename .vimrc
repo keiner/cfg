@@ -1,6 +1,6 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""VUNDEL""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""VUNDEL""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -30,9 +30,9 @@ Plugin 'godlygeek/tabular'
  "
  " see :h vundle for more details or wiki for FAQ
 " " Put your non-Plugin stuff after this line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""PATHOGEN""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""PATHOGEN""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute pathogen#infect()
 
 "info unter https://github.com/tpope/vim-pathogen
@@ -41,38 +41,34 @@ execute pathogen#infect()
 """""""""""""""""
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTree "TabsToggle<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""LATEX"""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""LATEX"""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
 
-"OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 "au BufEnter *.tex set autowrite
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats = 'pdf'
-"let g:Tex_CompileRule_pdf = 'mkdir -p out && pdflatex -output-directory=_out -interaction=nonstopmode $* && mv out/$*.pdf .'
 let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*'
 let g:Tex_GotoError = 0
-let g:Tex_ViewRule_pdf = 'Evince' 
+let g:Tex_ViewRule_pdf = 'evince' 
 let g:LatexBox_complete_inlineMath = 1
 set winaltkeys=no
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""GENERAL SETTINGS""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""GENERAL SETTINGS""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set number  "Zeilennummerierung ein
 ":set langmap=jklö;hjkl	"hjkl auf jklö ändern
 :syntax enable "Aktiviert Syntax-Highlighting 
 ":set spelllang=de,en spell "Sprache
-map <F8>  :setlocal spell spelllang=de,en <return>
-map <F7>  :setlocal spell& <return>
 ":set background=dark
 "colorscheme solarized "Farbschema einstellen
 :set ignorecase	"Groß/klein bei Suche ignorieren
@@ -83,11 +79,41 @@ map <F7>  :setlocal spell& <return>
 :set mouse=a
 :set list "nicht druckbare Zeichen anzeigen(Zeilenende,etc)
 """"""""""""""""""""""""""""""""""""""""""""
-"""""""""yank&put to strg-c/strg-v""""""""""
+""""""""""""""""""Tab moving""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""
+map  <C-l> :tabn<CR>
+map  <C-h> :tabp<CR>
+map  <C-j> :tabnew<CR>
+map  <C-k> :tabclose<CR>
+"""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""NERD-TREE"""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
+map <leader>t :NERDTreeToggle<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""
+"""""""""""SPELL-CHECK""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""
+map <F8>  :setlocal spell spelllang=de,en <return>
+map <F9> :setlocal spell& <return>
+
+"""""""""""""""""""""""""""""""""""""""""""
+"""""""""yank&put to strg-c/strg-v""""""""""
+""""""""""""""""""""""""""""""""""""""""""""1
 vmap <C-c> "+y
 nmap <C-v> "+p
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""AUTO COMPLETE""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""AUTO COMPLETE"""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <tab> <C-n>
 :abbreviate uu ubuntu-users
+:abbreviate %%% %%%%%%%%%%
+:abbreviate """ """"""""""
+:abbreviate $$$ $$$$$$$$$$
+
+"""""""""""""""""""""""""""""""""""
+""""" Quickly open/reload vim""""""
+"""""""""""""""""""""""""""""""""""
+"nnoremap <leader>ev :split $MYVIMRC<CR>  
+nnoremap <leader>r :source $MYVIMRC<CR> 
+nnoremap <leader>v :tabnew ~/.vimrc<CR>
