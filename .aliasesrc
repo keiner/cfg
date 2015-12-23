@@ -1,3 +1,5 @@
+#### Aktuelle Projekte
+alias itp="cd /home/keiner/Dokumente/ITP/Bericht/ && vim Hausarbeit.tex"
 #### RASPBERRY-PI
 alias sshpi='ssh pi@192.168.1.37'
 alias vncpi='krdc 192.168.1.37:1'
@@ -69,6 +71,7 @@ alias zcs='vim ~/.zcs'
 alias gitcs='vim ~/.gitcs'
 alias merk="vim ~/.merkzettel"
 alias mucs="vim ~/cheatsheets/mutator"
+alias vlcc="evince ~/cheatsheets/vimlatexqrc.pdf &"
 #### KOMMENTARE
 alias juchu='echo juchu es klappt'
 

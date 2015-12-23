@@ -62,58 +62,112 @@ let g:Tex_GotoError = 0
 let g:Tex_ViewRule_pdf = 'evince' 
 let g:LatexBox_complete_inlineMath = 1
 set winaltkeys=no
+nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""GENERAL SETTINGS""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set number  "Zeilennummerierung ein
-":set langmap=jklö;hjkl	"hjkl auf jklö ändern
+:set number "Zeilennummerierung ein
 :syntax enable "Aktiviert Syntax-Highlighting 
-":set spelllang=de,en spell "Sprache
-":set background=dark
-"colorscheme solarized "Farbschema einstellen
-:set ignorecase	"Groß/klein bei Suche ignorieren
+:set background=dark
+:colorscheme solarized "Farbschema einstellen
+:set ignorecase "Groß/klein bei Suche ignorieren
 :set incsearch "Während eingaben suchen"
 :set hlsearch "Markiert alle Such Ergebnisse
 :set wildmenu "Akt Vervollständigung im menu
 :let mapleader = ","
 :set mouse=a
-:set list "nicht druckbare Zeichen anzeigen(Zeilenende,etc)
+":set list "nicht druckbare Zeichen anzeigen(Zeilenende,etc)
+:set autoindent
+set splitbelow
+set splitright
 """"""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""Tab moving""""""""""""""""
+""""""""""""""""""MOVING""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""
-map  <C-l> :tabn<CR>
-map  <C-h> :tabp<CR>
-map  <C-j> :tabnew<CR>
-map  <C-k> :tabclose<CR>
+noremap  <C-l> :tabn<CR>
+noremap  <C-h> :tabp<CR>
+noremap  <C-m> :tabnew<CR>
+noremap  <C-k> :tabclose<CR>
+nnoremap <leader>j <C-W><C-J>
+nnoremap <leader>k <C-W><C-K>
+nnoremap <leader>l <C-W><C-L>
+nnoremap <leader>h <C-W><C-H>
 """""""""""""""""""""""""""""""""""""""""""""
 """"""""""""NERD-TREE"""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""
-map <leader>t :NERDTreeToggle<CR>
+noremap <F2> :NERDTreeToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""
 """""""""""SPELL-CHECK""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""
-map <F8>  :setlocal spell spelllang=de,en <return>
-map <F9> :setlocal spell& <return>
+noremap <F8>  :setlocal spell spelllang=de,en <return>
+noremap <F9> :setlocal spell& <return>
 
 """""""""""""""""""""""""""""""""""""""""""
 """""""""yank&put to strg-c/strg-v""""""""""
 """"""""""""""""""""""""""""""""""""""""""""1
-vmap <C-c> "+y
-nmap <C-v> "+p
+vnoremap <C-c> "+y
+nnoremap <C-v> "+p
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""AUTO COMPLETE"""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-map <tab> <C-n>
+noremap <tab> <C-n>
 :abbreviate uu ubuntu-users
 :abbreviate %%% %%%%%%%%%%
 :abbreviate """ """"""""""
 :abbreviate $$$ $$$$$$$$$$
 
+"""""""""""""""""""""""""""""""""
+"""""""""BOX-BUILDING""""""""""""
+"""""""""""""""""""""""""""""""""
+nmap <leader>cl id<esc><leader>cc$xvy30pi<CR><esc>10pi<++><esc>10pi<CR><esc>30p
+
+""""""""""""""""""""""""""""""
+""""""""""GO-LANG"""""""""
+""""""""""""""""""""""""""""""""
+":GoPath /home/$USER/work/go
+":GoInstallBinaries
+au FileType go nmap <leader>r <Plug>(go-run)
+"au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nnoremap <leader>b :make<CR>
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
+""""""""""""""""""""""""""""""
+""""""""""TAGBAR"""""""""
+""""""""""""""""""""""""""""""""
+nnoremap <F3> :TagbarToggle<CR>
+
+
 """""""""""""""""""""""""""""""""""
 """"" Quickly open/reload vim""""""
 """""""""""""""""""""""""""""""""""
 "nnoremap <leader>ev :split $MYVIMRC<CR>  
-nnoremap <leader>r :source $MYVIMRC<CR> 
-nnoremap <leader>v :tabnew ~/.vimrc<CR>
+nnoremap <F11> :source $MYVIMRC<CR> 
+nnoremap <leader>v :vsp ~/.vimrc<CR>
