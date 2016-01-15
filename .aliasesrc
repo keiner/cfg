@@ -9,6 +9,9 @@ alias mntpi='sshfs pi@raspberrypi:/ ~/work/mnt/pi/'
 alias keinpi='fusermount -u ~/work/mnt/pi/'
 alias keinpihome='fusermount -u ~/work/mnt/pihome/'
 
+#### Selbst kompiliert
+alias gnuplot5="/usr/local/bin/gnuplot"
+
 #### Update und installieren
 alias sagi='sudo apt-get install'
 alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get update'
