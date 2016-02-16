@@ -95,6 +95,10 @@ if [ -z $TMUX ];   then
 if [ -f ~/.todo ]; then
     cat ~/.todo
 fi      
+if [ -f ~/.faircafe ]; then
+    cat ~/.faircafe
+fi      
+
 
   
   

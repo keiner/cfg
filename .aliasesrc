@@ -1,5 +1,7 @@
 #### Aktuelle Projekte
 alias itp="cd /home/keiner/Dokumente/ITP/Bericht/ && vim Hausarbeit.tex"
+#### LISTEN
+alias fair="vim ~/.faircafe"
 #### RASPBERRY-PI
 alias sshpi='ssh pi@192.168.1.37'
 alias vncpi='krdc 192.168.1.37:1'
