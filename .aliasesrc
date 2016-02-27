@@ -14,10 +14,11 @@ alias keinpihome='fusermount -u ~/work/mnt/pihome/'
 #### Selbst kompiliert
 alias gnuplot5="/usr/local/bin/gnuplot"
 
-#### Update und installieren
+#### SYSTEM 
 alias sagi='sudo apt-get install'
 alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get update'
 alias lisa='ls -lisa'
+alias neu="sudo reboot"
 
 #### irssi irc chat
 alias irc="epic5 -c '#h15' elArscho irc.freenode.net:8001"
