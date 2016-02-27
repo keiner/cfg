@@ -68,8 +68,8 @@ nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :set number "Zeilennummerierung ein
 :syntax enable "Aktiviert Syntax-Highlighting 
-:set background=dark
-:colorscheme solarized "Farbschema einstellen
+":set background=dark
+":colorscheme solarized "Farbschema einstellen
 :set ignorecase "Groß/klein bei Suche ignorieren
 :set incsearch "Während eingaben suchen"
 :set hlsearch "Markiert alle Such Ergebnisse
