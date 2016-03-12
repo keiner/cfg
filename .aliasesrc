@@ -16,7 +16,7 @@ alias gnuplot5="/usr/local/bin/gnuplot"
 
 #### SYSTEM 
 alias sagi='sudo apt-get install'
-alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get update'
+alias update='sudo apt-get update && sudo apt-get dist-upgrade'
 alias lisa='ls -lisa'
 alias neu="sudo reboot"
 
@@ -42,7 +42,7 @@ alias mux='tmuxinator'
 alias tk="tmux kill-server"
 alias tax="tmux attach"
 alias tlist="tmux list-windows"
-alias te="tmux detach"
+alias td="tmux detach"
 alias tls="tmux ls"
 alias ta="tmux attach"
 ##### AKTUALISIEREN
@@ -64,7 +64,7 @@ alias et="exit"
 alias asdf='if [ "$TMUX" = "" ]; then exit; else tmux detach; fi'
 alias ölkj='clear'
 alias be='bildschirm extern'
-alias aus='sudo shutdown -h now'
+alias aus='shutdown -h now'
 alias c="cat"
 alias todo="vim ~/.todo"
 alias studi="vim ~/.studi"
