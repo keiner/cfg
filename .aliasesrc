@@ -60,7 +60,7 @@ alias ali='vim ~/.aliasesrc'
 ##### SHELL SPECIAL
 alias et="exit"
 alias asdf='if [ "$TMUX" = "" ]; then exit; else tmux detach; fi'
-alias ölkj='clear'
+alias lkjh='clear'
 alias be='bildschirm extern'
 alias aus='shutdown -h now'
 alias c="cat"
