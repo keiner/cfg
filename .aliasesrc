@@ -30,6 +30,7 @@ alias dynip="sudo service network-manager start"
 alias ga="git add"  #spezifische datei oder "." für alles im ordner wo man ist
 alias gc="git commit -m" #version dahinter schreiben
 alias gp="git push -u origin master"          
+alias gexcfg="cd ~/cfg/ && git pull"
 #git remote add origin https://github.com/keiner/asdf.git
 alias gitig="vim ~/.gitignore"
 alias gstat="git status"
