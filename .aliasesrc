@@ -1,9 +1,13 @@
 #### Aktuelle Projekte
 alias itp="cd /home/keiner/Dokumente/ITP/Bericht/ && vim Hausarbeit.tex"
+alias dip="vim /home/keiner/Dokumente/UNI/Diplom/latex/Diplomarbeit.tex"
 #### LISTEN
+
 alias fair="vim ~/.faircafe"
 #### RASPBERRY-PI
-alias sshpi='ssh pi@192.168.1.37'
+#alias ra="PULSE_SINK=Remote"
+alias rack="LANG=C pactl list | grep -A2 'Sink #' | grep 'Name: ' | cut -d\" \" -f2"
+alias pi='ssh pi@minnimi'
 alias vncpi='krdc 192.168.1.37:1'
 alias mntpihome='sshfs pi@raspberrypi:/home/pi ~/work/mnt/pihome/'
 alias usbpi='sshfs pi@raspberrypi:/media/usb0 ~/work/mnt/usbpi/'
@@ -16,6 +20,7 @@ alias sagi='sudo apt-get install'
 alias update='sudo apt-get update && sudo apt-get dist-upgrade'
 alias lisa='ls -lisa'
 alias neu="sudo reboot"
+alias w5="watch -n 0,5"
 
 #### irssi irc chat
 alias irc="epic5 -c '#h15' elArscho irc.freenode.net:8001"

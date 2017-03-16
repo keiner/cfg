@@ -1,51 +1,50 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""VUNDEL""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"VUNDEL------------------------{{{
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+"set nocompatible              " be iMproved, required
+"filetype off                  " required
 
- "set the runtime path to include Vundle and initialize
- set rtp+=~/.vim/bundle/Vundle.vim
- call vundle#begin()
- " alternatively, pass a path where Vundle should install plugins
- "call vundle#begin('~/some/path/here')
+ ""set the runtime path to include Vundle and initialize
+ "set rtp+=~/.vim/bundle/Vundle.vim
+ "call vundle#begin()
+ "" alternatively, pass a path where Vundle should install plugins
+ ""call vundle#begin('~/some/path/here')
 
- " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'godlygeek/tabular' 
+ "" let Vundle manage Vundle, required
+"Plugin 'gmarik/Vundle.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'godlygeek/tabular' 
 
 
 
- " All of your Plugins must be added before the following line
- call vundle#end()            " required
- filetype plugin indent on    " required
- " Brief help
- " :PluginList       "- lists configured plugins
- " :PluginInstall    "- installs plugins; append `!` to update or just
- " :PluginUpdate     "- Searches for Updates for all Plugins
- " :PluginSearch foo "- searches for foo; append `!` to refresh local cache
- " :PluginClean      "- confirms removal of unused plugins; append `!` to auto-approve removal
- "
- " see :h vundle for more details or wiki for FAQ
+ "" All of your Plugins must be added before the following line
+ "call vundle#end()            " required
+ "filetype plugin indent on    " required
+ "" Brief help
+ "" :PluginList       "- lists configured plugins
+ "" :PluginInstall    "- installs plugins; append `!` to update or just
+ "" :PluginUpdate     "- Searches for Updates for all Plugins
+ "" :PluginSearch foo "- searches for foo; append `!` to refresh local cache
+ "" :PluginClean      "- confirms removal of unused plugins; append `!` to auto-approve removal
+ ""
+ "" see :h vundle for more details or wiki for FAQ
 " " Put your non-Plugin stuff after this line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""PATHOGEN""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}} 
+"PATHOGEN----------------------------------------{{{
 execute pathogen#infect()
-
+filetype plugin indent on 
 "info unter https://github.com/tpope/vim-pathogen
+"}}}
+"NERDTree------------------{{{ 
+augroup nerdtree
+	autocmd!
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+augroup END
+noremap <F2> :NERDTreeToggle<CR>
 
-"""""""NERDTree"" 
-"""""""""""""""""
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""LATEX"""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" IMPORTANT: grep will sometimes skip displaying the file name if you
+"}}}
+"LATEX-----------------------{{{
+" IMPORTANT: grep will sometimes skip displaying the file name if you"
 " " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
@@ -57,17 +56,17 @@ let g:tex_flavor='latex'
 "au BufEnter *.tex set autowrite
 let g:Tex_DefaultTargetFormat = 'pdf'
 "let g:Tex_MultipleCompileFormats = 'pdf'
-let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*'
-let g:Tex_GotoError = 0
+let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*' 
+let g:Tex_GotoError = 0 
 let g:Tex_ViewRule_pdf = 'evince' 
 let g:LatexBox_complete_inlineMath = 1
 set winaltkeys=no
 nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""GENERAL SETTINGS""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}
+"GENERAL SETTINGS------------------{{{
 :set number "Zeilennummerierung ein
 :syntax enable "Aktiviert Syntax-Highlighting 
+
 ":set background=dark
 ":colorscheme solarized "Farbschema einstellen
 :set ignorecase "Groß/klein bei Suche ignorieren
@@ -80,24 +79,33 @@ nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 :set autoindent
 set splitbelow
 set splitright
-""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""MOVING""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""
-noremap  <C-l> :tabn<CR>
-noremap  <C-h> :tabp<CR>
-noremap  <C-m> :tabnew<CR>
-noremap  <C-k> :tabclose<CR>
-nnoremap <leader>j <C-W><C-J>
-nnoremap <leader>k <C-W><C-K>
-nnoremap <leader>l <C-W><C-L>
-nnoremap <leader>h <C-W><C-H>
-"""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""NERD-TREE"""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""
-noremap <F2> :NERDTreeToggle<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""
+set foldmethod=indent
+"}}}
+"Vimscript file settings--------------------{{{
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+"}}}
+"MOVING----------------------------{{{
+noremap  t<C-l> :tabn<CR>
+noremap  t<C-h> :tabp<CR>
+noremap  t<C-n> :tabnew<CR>
+noremap  t<C-c> :tabclose<CR>
+noremap      <CR>  o
+noremap <S-L> $
+noremap <S-H> 0
+inoremap kj <esc>
+"noremap      <C-CR> <O>
+"""""""""MOVING IN SPLITS""""""""""""""""
+noremap <c-f>j <C-W><C-J>
+noremap <c-f>k <C-W><C-K>
+noremap <c-f>l <C-W><C-L>
+noremap <c-f>h <C-W><C-H>
+"}}}
+""""""""""""""""SHORT-CMD""""""""""""""""""
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cnoremap w!! w !sudo tee  > /dev/null %
 """""""""""SPELL-CHECK""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""
 noremap <F8>  :setlocal spell spelllang=de,en <return>
@@ -107,24 +115,21 @@ noremap <F9> :setlocal spell& <return>
 """""""""yank&put to strg-c/strg-v""""""""""
 """"""""""""""""""""""""""""""""""""""""""""1
 vnoremap <C-c> "+y
-nnoremap <C-v> "+p
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""AUTO COMPLETE"""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <C-v> "+p
+"AUTO COMPLETE ------------------------{{{
+nnoremap fs O{{{<esc>:call<space>NERDComment(1,"comment")<CR>
+nnoremap fe o}}}<esc>:call<space>NERDComment(1,"comment")<CR>
 noremap <tab> <C-n>
-:abbreviate uu ubuntu-users
-:abbreviate %%% %%%%%%%%%%
-:abbreviate """ """"""""""
-:abbreviate $$$ $$$$$$$$$$
-
+:iabbrev uu ubuntu-users
+:iabbrev %%% %%%%%%%%%%
+:iabbrev """ """"""""""
+:iabbrev $$$ $$$$$$$$$$
+"}}}
 """""""""""""""""""""""""""""""""
 """""""""BOX-BUILDING""""""""""""
 """""""""""""""""""""""""""""""""
-nmap <leader>cl id<esc><leader>cc$xvy30pi<CR><esc>10pi<++><esc>10pi<CR><esc>30p
-
-""""""""""""""""""""""""""""""
-""""""""""GO-LANG"""""""""
-""""""""""""""""""""""""""""""""
+nnoremap <leader>cl id<esc><leader>cc$xvy30pi<CR><esc>10pi<++><esc>10pi<CR><esc>30p
+"GO-LANG------------------------------- {{{
 ":GoPath /home/$USER/work/go
 ":GoInstallBinaries
 au FileType go nmap <leader>r <Plug>(go-run)
@@ -159,6 +164,7 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
     \ }
+"}}}
 """"""""""""""""""""""""""""""
 """"""""""TAGBAR"""""""""
 """"""""""""""""""""""""""""""""
@@ -168,6 +174,10 @@ nnoremap <F3> :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""
 """"" Quickly open/reload vim""""""
 """""""""""""""""""""""""""""""""""
-"nnoremap <leader>ev :split $MYVIMRC<CR>  
 nnoremap <F11> :source $MYVIMRC<CR> 
 nnoremap <leader>v :vsp ~/.vimrc<CR>
+""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""cursorcross""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
+"g:cursorcross_dynamic = 'clw'
+
