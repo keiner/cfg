@@ -1,5 +1,13 @@
+#### Aktuelle Projekte
+alias itp="cd /home/keiner/Dokumente/ITP/Bericht/ && vim Hausarbeit.tex"
+alias dip="vim /home/keiner/Dokumente/UNI/Diplom/latex/Diplomarbeit.tex"
+#### LISTEN
+
+alias fair="vim ~/.faircafe"
 #### RASPBERRY-PI
-alias sshpi='ssh pi@192.168.1.37'
+#alias ra="PULSE_SINK=Remote"
+alias rack="LANG=C pactl list | grep -A2 'Sink #' | grep 'Name: ' | cut -d\" \" -f2"
+alias pi='ssh pi@minnimi'
 alias vncpi='krdc 192.168.1.37:1'
 alias mntpihome='sshfs pi@raspberrypi:/home/pi ~/work/mnt/pihome/'
 alias usbpi='sshfs pi@raspberrypi:/media/usb0 ~/work/mnt/usbpi/'
@@ -7,10 +15,12 @@ alias mntpi='sshfs pi@raspberrypi:/ ~/work/mnt/pi/'
 alias keinpi='fusermount -u ~/work/mnt/pi/'
 alias keinpihome='fusermount -u ~/work/mnt/pihome/'
 
-#### Update und installieren
+#### SYSTEM 
 alias sagi='sudo apt-get install'
-alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get update'
+alias update='sudo apt-get update && sudo apt-get dist-upgrade'
 alias lisa='ls -lisa'
+alias neu="sudo reboot"
+alias w5="watch -n 0,5"
 
 #### irssi irc chat
 alias irc="epic5 -c '#h15' elArscho irc.freenode.net:8001"
@@ -18,11 +28,14 @@ alias irc="epic5 -c '#h15' elArscho irc.freenode.net:8001"
 
 ##### NETZWERK
 alias allip='ip neigh show ' # zeigt alle ips im netzwerk
-
+alias speed=speedtest-cli
+alias statip='echo "ip bitte" && read ip && sudo service network-manager stop && sudo ifconfig eth0 $ip'
+alias dynip="sudo service network-manager start"
 ##### GIT/GITHUB
 alias ga="git add"  #spezifische datei oder "." für alles im ordner wo man ist
 alias gc="git commit -m" #version dahinter schreiben
 alias gp="git push -u origin master"          
+alias gexcfg="cd ~/cfg/ && git pull"
 #git remote add origin https://github.com/keiner/asdf.git
 alias gitig="vim ~/.gitignore"
 alias gstat="git status"
@@ -32,7 +45,7 @@ alias mux='tmuxinator'
 alias tk="tmux kill-server"
 alias tax="tmux attach"
 alias tlist="tmux list-windows"
-alias te="tmux detach"
+alias td="tmux detach"
 alias tls="tmux ls"
 alias ta="tmux attach"
 ##### AKTUALISIEREN
@@ -50,18 +63,24 @@ alias vrc='vim ~/.vimrc'
 alias ali='vim ~/.aliasesrc'
 
 ##### SHELL SPECIAL
+alias et="exit"
 alias asdf='if [ "$TMUX" = "" ]; then exit; else tmux detach; fi'
-alias ölkj='clear'
+alias lkjh='clear'
 alias be='bildschirm extern'
-alias aus='sudo shutdown -h now'
+alias aus='shutdown -h now'
 alias c="cat"
 alias todo="vim ~/.todo"
+alias studi="vim ~/.studi"
+alias fsw="vim ~/.fsw"
+alias laufwerke="sudo blkid -o list -w /dev/null" 
 #### CHEAT SHEETS
 alias tcs='vim ~/.tmuxcs'
 alias vcs='vim ~/.vimcs'
 alias zcs='vim ~/.zcs'
 alias gitcs='vim ~/.gitcs'
 alias merk="vim ~/.merkzettel"
+alias mucs="vim ~/cheatsheets/mutator"
+alias vlcc="evince ~/cheatsheets/vimlatexqrc.pdf &"
 #### KOMMENTARE
 alias juchu='echo juchu es klappt'
 

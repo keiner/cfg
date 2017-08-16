@@ -95,12 +95,25 @@ if [ -z $TMUX ];   then
 if [ -f ~/.todo ]; then
     cat ~/.todo
 fi      
+if [ -f ~/.faircafe ]; then
+    cat ~/.faircafe
+fi      
+
 
   
   
 # standard editor vim
 export EDITOR='vim'
 
-PERL_MB_OPT="--install_base \"/home/keiner/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/keiner/perl5"; export PERL_MM_OPT;
+PERL_MB_OPT="--install_base \"/home/$USER/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
 
+# remote sound
+# pactl load-module module-tunnel-sink-new server=minnimi sink_name=Remote channels=2 rate=44100
+
+export NVM_DIR="/home/keiner/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+#NODE
+#NVM
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion

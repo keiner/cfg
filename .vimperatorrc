@@ -1,0 +1,6 @@
+" ======MAPPING======
+noremap h :tabprevious<CR>
+noremap l :tabnext<CR>
+nnoremap r <C-r>
+nnoremap d <C-w>
+nnoremap t <C-t> <esc> o
