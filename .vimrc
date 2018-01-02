@@ -104,6 +104,11 @@ noremap fj <C-W><C-J>
 noremap fk <C-W><C-K>
 noremap fl <C-W><C-L>
 noremap fh <C-W><C-H>
+noremap fn :vnew<CR>
+noremap fm :new<CR>
+noremap fv :split<CR>
+noremap fb :vsplit<CR>
+
 "}}}
 "OTHER MAPPINGS------------------------------------{{{
 " save as sudo when I forgot to start vim using sudo.
