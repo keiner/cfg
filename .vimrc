@@ -1,3 +1,4 @@
+"test
 "VUNDEL------------------------{{{
 
 "set nocompatible              " be iMproved, required
@@ -43,28 +44,9 @@ augroup END
 noremap <F2> :NERDTreeToggle<CR>
 
 "}}}
-"LATEX-----------------------{{{
-" IMPORTANT: grep will sometimes skip displaying the file name if you"
-" " search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" " The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-"au BufEnter *.tex set autowrite
-let g:Tex_DefaultTargetFormat = 'pdf'
-"let g:Tex_MultipleCompileFormats = 'pdf'
-let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*' 
-let g:Tex_GotoError = 0 
-let g:Tex_ViewRule_pdf = 'evince' 
-let g:LatexBox_complete_inlineMath = 1
-set winaltkeys=no
-nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
-"}}}
 "GENERAL SETTINGS------------------{{{
 :set number "Zeilennummerierung ein
+ nmap ^ :set invrelativenumber<CR> " Toggle relative line number
 :syntax enable "Aktiviert Syntax-Highlighting 
 
 ":set background=dark
@@ -80,6 +62,7 @@ nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 set splitbelow
 set splitright
 set foldmethod=indent
+:set runtimepath^=~/.vim/bundle/node 
 "}}}
 "Vimscript file settings--------------------{{{
 augroup filetype_vim
@@ -87,48 +70,89 @@ augroup filetype_vim
 	autocmd FileType vim setlocal foldmethod=marker
 augroup END
 "}}}
-"MOVING----------------------------{{{
-noremap  t<C-l> :tabn<CR>
-noremap  t<C-h> :tabp<CR>
-noremap  t<C-n> :tabnew<CR>
-noremap  t<C-c> :tabclose<CR>
+"LATEX-----------------------{{{
+" IMPORTANT: grep will sometimes skip displaying the file name if you"
+" " search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" " The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+"let g:Tex_BibtexFlavor='biber'
+"au BufEnter *.tex set autowrite
+let g:Tex_DefaultTargetFormat = 'pdf'
+"let g:Tex_MultipleCompileFormats = 'pdf,dv,dvi'
+let g:Tex_CompileRule_pdf = 'arara -v $*'
+let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*' 
+let g:Tex_GotoError = 0 
+let g:Tex_ViewRule_pdf = 'evince' 
+let g:LatexBox_complete_inlineMath = 1
+set winaltkeys=no
+nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
+map <Leader>lb :<C-U>exec '!biber '.Tex_GetMainFileName(':p:t:r')<CR>
+"}}}
+"MOVING----------------------------""{{{
+"MOVING IN TABS
+noremap  tl :tabn<CR>
+noremap  th :tabp<CR>
+noremap  tn :tabnew<CR>
+noremap  tc :tabclose<CR>
+"MOVING IN SPLITS
+noremap fj <C-W><C-J>
+noremap fk <C-W><C-K>
+noremap fl <C-W><C-L>
+noremap fh <C-W><C-H>
+"}}}
+"OTHER MAPPINGS------------------------------------{{{
+" save as sudo when I forgot to start vim using sudo.
+cnoremap w!! w !sudo tee  > /dev/null %
+"Return for new line
 noremap      <CR>  o
+"noremap      <C-CR> <O>
+"Shift h&l for jump in line
 noremap <S-L> $
 noremap <S-H> 0
+"kj for esc
 inoremap kj <esc>
-"noremap      <C-CR> <O>
-"""""""""MOVING IN SPLITS""""""""""""""""
-noremap <c-f>j <C-W><C-J>
-noremap <c-f>k <C-W><C-K>
-noremap <c-f>l <C-W><C-L>
-noremap <c-f>h <C-W><C-H>
-"}}}
-""""""""""""""""SHORT-CMD""""""""""""""""""
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cnoremap w!! w !sudo tee  > /dev/null %
-"""""""""""SPELL-CHECK""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""
-noremap <F8>  :setlocal spell spelllang=de,en <return>
-noremap <F9> :setlocal spell& <return>
-
-"""""""""""""""""""""""""""""""""""""""""""
-"""""""""yank&put to strg-c/strg-v""""""""""
-""""""""""""""""""""""""""""""""""""""""""""1
-vnoremap <C-c> "+y
-noremap <C-v> "+p
-"AUTO COMPLETE ------------------------{{{
+"fc for close pane
+noremap fc :q<CR>
+"create foldmark
 nnoremap fs O{{{<esc>:call<space>NERDComment(1,"comment")<CR>
 nnoremap fe o}}}<esc>:call<space>NERDComment(1,"comment")<CR>
+"TAGBAR
+nnoremap <F3> :TagbarToggle<CR>
+"SPELL-CHECK
+noremap <F8>  :setlocal spell spelllang=de,en <return>
+noremap <F9> :setlocal spell& <return>
+" Quickly open/reload vim
+nnoremap <F11> :source $MYVIMRC<CR> 
+nnoremap <leader>v :vsp ~/.vimrc<CR>
+"yank&put to strg-c/strg-v
+vnoremap <C-c> "+y
+"noremap <C-v> "+p
+"BOX-BUILDING
+nnoremap <leader>cl id<esc><leader>cc$xvy30pi<CR><esc>10pi<++><esc>10pi<CR><esc>30p
+""}}}
+"AUTO COMPLETE ------------------------{{{
 noremap <tab> <C-n>
 :iabbrev uu ubuntu-users
 :iabbrev %%% %%%%%%%%%%
 :iabbrev """ """"""""""
 :iabbrev $$$ $$$$$$$$$$
+:iabbrev hotspot 
+\<CR>{
+\<CR>"pitch": <++>,
+\<CR>"yaw": <++>,
+\<CR>"hfov": 120,
+\<CR>"type": "scene",
+\<CR>"text": "<++>",
+\<CR>"sceneId": "<++>",
+\<CR>"targetYaw": <++>,
+\<CR>"targetPitch": <++>
+\<CR>}<esc>8k<C-j>
 "}}}
-"""""""""""""""""""""""""""""""""
-"""""""""BOX-BUILDING""""""""""""
-"""""""""""""""""""""""""""""""""
-nnoremap <leader>cl id<esc><leader>cc$xvy30pi<CR><esc>10pi<++><esc>10pi<CR><esc>30p
 "GO-LANG------------------------------- {{{
 ":GoPath /home/$USER/work/go
 ":GoInstallBinaries
@@ -166,18 +190,24 @@ let g:tagbar_type_go = {
     \ }
 "}}}
 """"""""""""""""""""""""""""""
-""""""""""TAGBAR"""""""""
-""""""""""""""""""""""""""""""""
-nnoremap <F3> :TagbarToggle<CR>
 
 
-"""""""""""""""""""""""""""""""""""
-""""" Quickly open/reload vim""""""
-"""""""""""""""""""""""""""""""""""
-nnoremap <F11> :source $MYVIMRC<CR> 
-nnoremap <leader>v :vsp ~/.vimrc<CR>
 """"""""""""""""""""""""""""""""""""""""""
 """""""""""""cursorcross""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""
 "g:cursorcross_dynamic = 'clw'
+""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""YCM""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_key_invoke_completion = '<C-Space>'
+"""""""""""""""""""""""""""""""""""""""""
+"""""""""""""NODEJS""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""
+""<C-w>f to open fle under curser in vsplit
+autocmd User Node
+  \ if &filetype == "javascript" |
+  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+  \ endif
 

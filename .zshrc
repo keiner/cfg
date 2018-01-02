@@ -81,8 +81,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 
 
 #.aliasesrc hier einfügen:  
-if [ -f ~/.aliasesrc ]; then
-	. ~/.aliasesrc
+if [ -f ~/cfg/.aliasesrc ]; then
+	. ~/cfg/.aliasesrc
 fi
 
 # verbindet tmux session und erstellt bei bedarf neue
