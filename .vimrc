@@ -94,6 +94,9 @@ nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 map <Leader>lb :<C-U>exec '!biber '.Tex_GetMainFileName(':p:t:r')<CR>
 "}}}
 "MOVING----------------------------""{{{
+"Faster moving in lines
+noremap J 5j
+noremap K 5k
 "MOVING IN TABS
 noremap  tl :tabn<CR>
 noremap  th :tabp<CR>
@@ -108,7 +111,7 @@ noremap fn :vnew<CR>
 noremap fm :new<CR>
 noremap fv :split<CR>
 noremap fb :vsplit<CR>
-
+noremap ff <C-W>f
 "}}}
 "OTHER MAPPINGS------------------------------------{{{
 " save as sudo when I forgot to start vim using sudo.

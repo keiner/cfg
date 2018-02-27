@@ -1,13 +1,14 @@
 #### Aktuelle Projekte
 alias itp="cd /home/keiner/Dokumente/ITP/Bericht/ && vim Hausarbeit.tex"
 alias dip="vim /home/keiner/Dokumente/UNI/Diplom/latex/Diplomarbeit.tex"
+alias laden="cd /home/keiner/Dokumente/laden/ && vim"
 #### LISTEN
 
 alias fair="vim ~/.faircafe"
 #### RASPBERRY-PI
 #alias ra="PULSE_SINK=Remote"
 alias rack="LANG=C pactl list | grep -A2 'Sink #' | grep 'Name: ' | cut -d\" \" -f2"
-alias pi='ssh pi@minnimi'
+alias pi='ssh pi@10.230.55.166'
 alias vncpi='krdc 192.168.1.37:1'
 alias mntpihome='sshfs pi@raspberrypi:/home/pi ~/work/mnt/pihome/'
 alias usbpi='sshfs pi@raspberrypi:/media/usb0 ~/work/mnt/usbpi/'
@@ -60,7 +61,7 @@ alias brc='vim ~/.bashrc'
 alias frc='vim ~/.fishrc'
 alias tcf='vim ~/.tmux.conf'
 alias vrc='vim ~/.vimrc'
-alias ali='vim ~/.aliasesrc'
+alias ali='vim ~/cfg/.aliasesrc'
 
 ##### SHELL SPECIAL
 alias et="exit"
