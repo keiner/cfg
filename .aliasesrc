@@ -20,7 +20,7 @@ alias keinpihome='fusermount -u ~/work/mnt/pihome/'
 alias sagi='sudo apt-get install'
 alias update='sudo apt-get update && sudo apt-get dist-upgrade'
 alias lisa='ls -lisa'
-alias neu="sudo reboot"
+alias neu="sudo shutdown -r now"
 alias w5="watch -n 0,5"
 
 #### irssi irc chat

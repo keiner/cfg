@@ -1,40 +1,68 @@
-"test
 "VUNDEL------------------------{{{
-
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
-
- ""set the runtime path to include Vundle and initialize
- "set rtp+=~/.vim/bundle/Vundle.vim
- "call vundle#begin()
- "" alternatively, pass a path where Vundle should install plugins
- ""call vundle#begin('~/some/path/here')
-
- "" let Vundle manage Vundle, required
-"Plugin 'gmarik/Vundle.vim'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'godlygeek/tabular' 
-
-
-
- "" All of your Plugins must be added before the following line
- "call vundle#end()            " required
- "filetype plugin indent on    " required
- "" Brief help
- "" :PluginList       "- lists configured plugins
- "" :PluginInstall    "- installs plugins; append `!` to update or just
- "" :PluginUpdate     "- Searches for Updates for all Plugins
- "" :PluginSearch foo "- searches for foo; append `!` to refresh local cache
- "" :PluginClean      "- confirms removal of unused plugins; append `!` to auto-approve removal
- ""
- "" see :h vundle for more details or wiki for FAQ
-" " Put your non-Plugin stuff after this line
+"SETTINGS-----------------------{{{
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim "set the runtime path to include Vundle and init
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+"-----------------------}}}
+"PLUGINS-----------------------{{{
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'godlygeek/tabular' 
+Plugin 'mtth/cursorcross.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'vim-latex/vim-latex'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+"-----------------------}}}
+"VUNDEL HELP-----------------------{{{
+ " :PluginList       "- lists configured plugins
+ " :PluginInstall    "- installs plugins; append `!` to update or just
+ " :PluginUpdate     "- Searches for Updates for all Plugins
+ " :PluginSearch foo "- searches for foo; append `!` to refresh local cache
+ " :PluginClean      "- confirms removal of unused plugins; append `!` to auto-approve removal
+ "
+ " see :h vundle for more details or wiki for FAQ
+ " Put your non-Plugin stuff after this line
+" -----------------------}}}
 "}}} 
 "PATHOGEN----------------------------------------{{{
-execute pathogen#infect()
-filetype plugin indent on 
+"execute pathogen#infect()
+"filetype plugin indent on 
 "info unter https://github.com/tpope/vim-pathogen
 "}}}
+"GENERAL SETTINGS------------------{{{
+let mapleader = ","
+set autoindent
+syntax enable 		"Aktiviert Syntax-Highlighting 
+"g:cursorcross_dynamic = 'clw'
+":set background=dark
+"colorscheme solarized "Farbschema einstellen
+set wildmenu 		"Akt Vervollständigung im menu
+set mouse=a		"Aktiviert Maus Unterstützung
+":set list 		"nicht druckbare Zeichen anzeigen(Zeilenende,etc)
+set splitbelow
+set splitright
+set runtimepath^=~/.vim/bundle/node 
+"}}}
+"ULTISNIPS-----------------------{{{
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+if !exists("g:UltiSnipsJumpForwardTrigger")
+	let g:UltiSnipsJumpForwardTrigger="<tab>"
+endif
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"-----------------------}}}
 "NERDTree------------------{{{ 
 augroup nerdtree
 	autocmd!
@@ -42,33 +70,110 @@ augroup nerdtree
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 augroup END
 noremap <F2> :NERDTreeToggle<CR>
-
 "}}}
-"GENERAL SETTINGS------------------{{{
-:set number "Zeilennummerierung ein
+"LINE NUMBERING{{{
+set number 
+"Relative zeilennummerierung
  nmap ^ :set invrelativenumber<CR> " Toggle relative line number
-:syntax enable "Aktiviert Syntax-Highlighting 
-
-":set background=dark
-":colorscheme solarized "Farbschema einstellen
-:set ignorecase "Groß/klein bei Suche ignorieren
-:set incsearch "Während eingaben suchen"
-:set hlsearch "Markiert alle Such Ergebnisse
-:set wildmenu "Akt Vervollständigung im menu
-:let mapleader = ","
-:set mouse=a
-":set list "nicht druckbare Zeichen anzeigen(Zeilenende,etc)
-:set autoindent
-set splitbelow
-set splitright
-set foldmethod=indent
-:set runtimepath^=~/.vim/bundle/node 
+ "}}}
+"SEARCH OPTIONS--------------------{{{
+set ignorecase "Groß/klein bei Suche ignorieren
+set incsearch "Während eingaben suchen"
+set hlsearch "Markiert alle Such Ergebnisse
+nnoremap <CR> :noh<CR> 
 "}}}
-"Vimscript file settings--------------------{{{
+"FOLDING---------------------------{{{
+set foldenable
+set foldmethod=marker
+"FILETYPE FOLDING--------------------{{{
 augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
+	autocmd FileType .conf setlocal foldmethod=marker
+	autocmd FileType .tex setlocal foldmethod=indent
+	autocmd FileType .sh setlocal foldmethod=indent
+
 augroup END
+"}}}
+"CREATE FOLDMARKS-----------------------{{{
+nnoremap fs A-----------------------{{{<esc>:call<space>NERDComment(1,"comment")<CR>
+nnoremap fe o-----------------------}}}<esc>:call<space>NERDComment(1,"comment")<CR>
+"-----------------------}}}
+"}}}
+"MOVING----------------------------""{{{
+"Faster moving in lines
+noremap J 5j
+noremap K 5k
+"Shift h&l for jump to begining and end of line
+noremap <S-L> $
+noremap <S-H> 0
+"-----------------------}}}
+"TAB AND SPLIT HANDLING-----------------------{{{
+"MOVING IN TABS
+noremap  tl :tabn<CR>
+noremap  th :tabp<CR>
+noremap  tn :tabnew<CR>
+noremap  tc :tabclose<CR>
+"MOVING IN SPLITS
+noremap fj <C-W><C-J>
+noremap fk <C-W><C-K>
+noremap fl <C-W><C-L>
+noremap fh <C-W><C-H>
+noremap fn :vnew<CR>
+noremap fm :new<CR>
+noremap fv :split<CR>
+noremap fb :vsplit<CR>
+noremap ff <C-W>f
+noremap fc :q<CR>
+"}}}
+"OTHER MAPPINGS------------------------------------{{{
+" save as sudo when I forgot to start vim using sudo.
+cnoremap w!! w !sudo tee  > /dev/null %
+"kj for esc
+inoremap kj <esc>
+"TAGBAR
+nnoremap <F3> :TagbarToggle<CR>
+"SPELL-CHECK
+noremap <F8>  :setlocal spell spelllang=de,en <return>
+noremap <F9> :setlocal spell& <return>
+"Quickly open/reload vimrc
+noremap <F10> :source $MYVIMRC<CR> 
+nnoremap <leader>v :tabnew ~/.vimrc<CR>
+"Quickly open a tmux split in working directory
+noremap <F11> :!tmux split-window -l 10 -c %:p:h<CR> 
+"Open split and execute file in bash
+nnoremap <leader>x :!tmux split-window -l 10 -c %:p:h  'bash %:p;read'<CR> 
+nnoremap <leader>X :!tmux split-window -l 10 -c %:p:h  'bash %:p;read'<left><left><left><left><left><left>
+"yank&put to strg-c/strg-v
+vnoremap <C-c> "+y
+"noremap <C-v> "+p
+""}}}
+"AUTO COMPLETE ------------------------{{{
+iabbrev uu ubuntu-users
+iabbrev %%% %%%%%%%%%%
+iabbrev """ """"""""""
+iabbrev $$$ $$$$$$$$$$
+iabbrev bbang #!/bin/bash
+"pannellum
+iabbrev hotspot 
+\<CR>{
+\<CR>"pitch": <++>,
+\<CR>"yaw": <++>,
+\<CR>"hfov": 120,
+\<CR>"type": "scene",
+\<CR>"text": "<++>",
+\<CR>"sceneId": "<++>",
+\<CR>"targetYaw": <++>,
+\<CR>"targetPitch": <++>
+\<CR>}<esc>8k<C-j>
+"}}}
+"FORMATING------------------------{{{
+noremap > >>
+noremap < <<
+"}}}
+"YCM--------------------------{{{
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_key_invoke_completion = '<C-Space>'
 "}}}
 "LATEX-----------------------{{{
 " IMPORTANT: grep will sometimes skip displaying the file name if you"
@@ -93,73 +198,13 @@ set winaltkeys=no
 nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 map <Leader>lb :<C-U>exec '!biber '.Tex_GetMainFileName(':p:t:r')<CR>
 "}}}
-"MOVING----------------------------""{{{
-"Faster moving in lines
-noremap J 5j
-noremap K 5k
-"MOVING IN TABS
-noremap  tl :tabn<CR>
-noremap  th :tabp<CR>
-noremap  tn :tabnew<CR>
-noremap  tc :tabclose<CR>
-"MOVING IN SPLITS
-noremap fj <C-W><C-J>
-noremap fk <C-W><C-K>
-noremap fl <C-W><C-L>
-noremap fh <C-W><C-H>
-noremap fn :vnew<CR>
-noremap fm :new<CR>
-noremap fv :split<CR>
-noremap fb :vsplit<CR>
-noremap ff <C-W>f
-"}}}
-"OTHER MAPPINGS------------------------------------{{{
-" save as sudo when I forgot to start vim using sudo.
-cnoremap w!! w !sudo tee  > /dev/null %
-"Return for new line
-noremap      <CR>  o
-"noremap      <C-CR> <O>
-"Shift h&l for jump in line
-noremap <S-L> $
-noremap <S-H> 0
-"kj for esc
-inoremap kj <esc>
-"fc for close pane
-noremap fc :q<CR>
-"create foldmark
-nnoremap fs O{{{<esc>:call<space>NERDComment(1,"comment")<CR>
-nnoremap fe o}}}<esc>:call<space>NERDComment(1,"comment")<CR>
-"TAGBAR
-nnoremap <F3> :TagbarToggle<CR>
-"SPELL-CHECK
-noremap <F8>  :setlocal spell spelllang=de,en <return>
-noremap <F9> :setlocal spell& <return>
-" Quickly open/reload vim
-nnoremap <F11> :source $MYVIMRC<CR> 
-nnoremap <leader>v :vsp ~/.vimrc<CR>
-"yank&put to strg-c/strg-v
-vnoremap <C-c> "+y
-"noremap <C-v> "+p
-"BOX-BUILDING
-nnoremap <leader>cl id<esc><leader>cc$xvy30pi<CR><esc>10pi<++><esc>10pi<CR><esc>30p
-""}}}
-"AUTO COMPLETE ------------------------{{{
-noremap <tab> <C-n>
-:iabbrev uu ubuntu-users
-:iabbrev %%% %%%%%%%%%%
-:iabbrev """ """"""""""
-:iabbrev $$$ $$$$$$$$$$
-:iabbrev hotspot 
-\<CR>{
-\<CR>"pitch": <++>,
-\<CR>"yaw": <++>,
-\<CR>"hfov": 120,
-\<CR>"type": "scene",
-\<CR>"text": "<++>",
-\<CR>"sceneId": "<++>",
-\<CR>"targetYaw": <++>,
-\<CR>"targetPitch": <++>
-\<CR>}<esc>8k<C-j>
+"NODEJS---------------------------{{{
+""<C-w>f to open fle under curser in vsplit
+autocmd User Node
+  \ if &filetype == "javascript" |
+  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+  \ endif
 "}}}
 "GO-LANG------------------------------- {{{
 ":GoPath /home/$USER/work/go
@@ -197,25 +242,3 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
     \ }
 "}}}
-""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""cursorcross""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""
-"g:cursorcross_dynamic = 'clw'
-""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""YCM""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-let g:ycm_key_invoke_completion = '<C-Space>'
-"""""""""""""""""""""""""""""""""""""""""
-"""""""""""""NODEJS""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""
-""<C-w>f to open fle under curser in vsplit
-autocmd User Node
-  \ if &filetype == "javascript" |
-  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
-  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
-  \ endif
-
