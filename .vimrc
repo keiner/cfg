@@ -1,4 +1,4 @@
-"VUNDEL------------------------{{{
+"VUNDEL----------------------------{{{
 "SETTINGS---------{{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -7,7 +7,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 "-----------------}}}
-"PLUGINS----{{{
+"PLUGINS----------{{{
 Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'godlygeek/tabular' 
@@ -22,8 +22,8 @@ Plugin 'majutsushi/tagbar'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"-----------}}}
-"VUNDEL HELP---{{{
+"-----------------}}}
+"VUNDEL HELP------{{{
  " :PluginList       "- lists configured plugins
  " :PluginInstall    "- installs plugins; append `!` to update or just
  " :PluginUpdate     "- Searches for Updates for all Plugins
@@ -32,8 +32,8 @@ filetype plugin indent on    " required
  "
  " see :h vundle for more details or wiki for FAQ
  " Put your non-Plugin stuff after this line
-" -------------}}}
-"------------------------------}}} 
+" ----------------}}}
+"----------------------------------}}} 
 "GENERAL SETTINGS------------------{{{
 let mapleader = ","
 set autoindent
@@ -48,7 +48,7 @@ set splitbelow
 set splitright
 set runtimepath^=~/.vim/bundle/node 
 "----------------------------------}}}
-"LINE AND COLUMN NUMBERING--------------------{{{
+"LINE AND COLUMN NUMBERING---------{{{
 set ruler
 set number 
 set invrelativenumber
