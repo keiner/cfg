@@ -22,17 +22,8 @@ Plugin 'majutsushi/tagbar'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"-----------------}}}
-"VUNDEL HELP------{{{
- " :PluginList       "- lists configured plugins
- " :PluginInstall    "- installs plugins; append `!` to update or just
- " :PluginUpdate     "- Searches for Updates for all Plugins
- " :PluginSearch foo "- searches for foo; append `!` to refresh local cache
- " :PluginClean      "- confirms removal of unused plugins; append `!` to auto-approve removal
- "
- " see :h vundle for more details or wiki for FAQ
  " Put your non-Plugin stuff after this line
-" ----------------}}}
+"-----------------}}}
 "----------------------------------}}} 
 "GENERAL SETTINGS------------------{{{
 let mapleader = ","
@@ -63,15 +54,15 @@ nnoremap <CR> :noh<CR>
 "----------------------------------}}}
 "FOLDING---------------------------{{{
 set foldenable
-set foldmethod=marker
+"set foldmethod=marker
 "FILETYPE FOLDING-------{{{
-augroup filetype_vim
+augroup folding
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
-	autocmd FileType .conf setlocal foldmethod=marker
-	autocmd FileType .tex setlocal foldmethod=indent
-	autocmd FileType .sh setlocal foldmethod=indent
-
+	autocmd FileType conf setlocal foldmethod=marker
+	autocmd FileType tex setlocal foldmethod=indent
+	autocmd FileType sh setlocal foldmethod=indent
+	autocmd FileType html setlocal foldmethod=indent
 augroup END
 "-----------------------}}}
 "CREATE FOLDMARKS-------{{{
@@ -110,6 +101,8 @@ noremap fc :q<CR>
 cnoremap w!! w !sudo tee  > /dev/null %
 "kj for esc
 inoremap kj <esc>
+"jh for :
+noremap jh :
 "SPELL-CHECK
 noremap <F8>  :setlocal spell spelllang=de,en <return>
 noremap <F9> :setlocal spell& <return>
@@ -208,11 +201,14 @@ map <Leader>lb :<C-U>exec '!biber '.Tex_GetMainFileName(':p:t:r')<CR>
 "--------------------------------}}}
 "NODEJS--------------------------{{{
 ""<C-w>f to open fle under curser in vsplit
-autocmd User Node
-  \ if &filetype == "javascript" |
-  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
-  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
-  \ endif
+augroup node
+	autocmd!
+	autocmd User Node
+		\ if &filetype == "javascript" |
+		\   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+		\   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+		\ endif
+augroup END
 "--------------------------------}}}
 "GO-LANG-------------------------{{{
 ":GoPath /home/$USER/work/go
