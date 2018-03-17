@@ -1,13 +1,14 @@
 "VUNDEL------------------------{{{
-"SETTINGS-----------------------{{{
+"SETTINGS---------{{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim "set the runtime path to include Vundle and init
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-"-----------------------}}}
-"PLUGINS-----------------------{{{
+"-----------------}}}
+"PLUGINS----{{{
+Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'godlygeek/tabular' 
 Plugin 'mtth/cursorcross.vim'
@@ -17,11 +18,12 @@ Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'vim-latex/vim-latex'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'majutsushi/tagbar'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"-----------------------}}}
-"VUNDEL HELP-----------------------{{{
+"-----------}}}
+"VUNDEL HELP---{{{
  " :PluginList       "- lists configured plugins
  " :PluginInstall    "- installs plugins; append `!` to update or just
  " :PluginUpdate     "- Searches for Updates for all Plugins
@@ -30,13 +32,8 @@ filetype plugin indent on    " required
  "
  " see :h vundle for more details or wiki for FAQ
  " Put your non-Plugin stuff after this line
-" -----------------------}}}
-"}}} 
-"PATHOGEN----------------------------------------{{{
-"execute pathogen#infect()
-"filetype plugin indent on 
-"info unter https://github.com/tpope/vim-pathogen
-"}}}
+" -------------}}}
+"------------------------------}}} 
 "GENERAL SETTINGS------------------{{{
 let mapleader = ","
 set autoindent
@@ -50,42 +47,24 @@ set mouse=a		"Aktiviert Maus Unterstützung
 set splitbelow
 set splitright
 set runtimepath^=~/.vim/bundle/node 
-"}}}
-"ULTISNIPS-----------------------{{{
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-if !exists("g:UltiSnipsJumpForwardTrigger")
-	let g:UltiSnipsJumpForwardTrigger="<tab>"
-endif
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-"-----------------------}}}
-"NERDTree------------------{{{ 
-augroup nerdtree
-	autocmd!
-	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-augroup END
-noremap <F2> :NERDTreeToggle<CR>
-"}}}
-"LINE NUMBERING{{{
+"----------------------------------}}}
+"LINE AND COLUMN NUMBERING--------------------{{{
+set ruler
 set number 
+set invrelativenumber
 "Relative zeilennummerierung
  nmap ^ :set invrelativenumber<CR> " Toggle relative line number
- "}}}
+ "---------------------------------}}}
 "SEARCH OPTIONS--------------------{{{
 set ignorecase "Groß/klein bei Suche ignorieren
 set incsearch "Während eingaben suchen"
 set hlsearch "Markiert alle Such Ergebnisse
 nnoremap <CR> :noh<CR> 
-"}}}
+"----------------------------------}}}
 "FOLDING---------------------------{{{
 set foldenable
 set foldmethod=marker
-"FILETYPE FOLDING--------------------{{{
+"FILETYPE FOLDING-------{{{
 augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
@@ -94,21 +73,21 @@ augroup filetype_vim
 	autocmd FileType .sh setlocal foldmethod=indent
 
 augroup END
-"}}}
-"CREATE FOLDMARKS-----------------------{{{
+"-----------------------}}}
+"CREATE FOLDMARKS-------{{{
 nnoremap fs A-----------------------{{{<esc>:call<space>NERDComment(1,"comment")<CR>
 nnoremap fe o-----------------------}}}<esc>:call<space>NERDComment(1,"comment")<CR>
 "-----------------------}}}
-"}}}
-"MOVING----------------------------""{{{
+"----------------------------------}}}
+"MOVING----------------------------{{{
 "Faster moving in lines
 noremap J 5j
 noremap K 5k
 "Shift h&l for jump to begining and end of line
 noremap <S-L> $
 noremap <S-H> 0
-"-----------------------}}}
-"TAB AND SPLIT HANDLING-----------------------{{{
+"----------------------------------}}}
+"TAB AND SPLIT HANDLING------------{{{
 "MOVING IN TABS
 noremap  tl :tabn<CR>
 noremap  th :tabp<CR>
@@ -125,14 +104,12 @@ noremap fv :split<CR>
 noremap fb :vsplit<CR>
 noremap ff <C-W>f
 noremap fc :q<CR>
-"}}}
-"OTHER MAPPINGS------------------------------------{{{
+"----------------------------------}}}
+"OTHER MAPPINGS--------------------{{{
 " save as sudo when I forgot to start vim using sudo.
 cnoremap w!! w !sudo tee  > /dev/null %
 "kj for esc
 inoremap kj <esc>
-"TAGBAR
-nnoremap <F3> :TagbarToggle<CR>
 "SPELL-CHECK
 noremap <F8>  :setlocal spell spelllang=de,en <return>
 noremap <F9> :setlocal spell& <return>
@@ -147,8 +124,8 @@ nnoremap <leader>X :!tmux split-window -l 10 -c %:p:h  'bash %:p;read'<left><lef
 "yank&put to strg-c/strg-v
 vnoremap <C-c> "+y
 "noremap <C-v> "+p
-""}}}
-"AUTO COMPLETE ------------------------{{{
+"----------------------------------}}}
+"AUTO COMPLETE --------------------{{{
 iabbrev uu ubuntu-users
 iabbrev %%% %%%%%%%%%%
 iabbrev """ """"""""""
@@ -166,16 +143,47 @@ iabbrev hotspot
 \<CR>"targetYaw": <++>,
 \<CR>"targetPitch": <++>
 \<CR>}<esc>8k<C-j>
-"}}}
+"---------------------------------}}}
 "FORMATING------------------------{{{
 noremap > >>
 noremap < <<
-"}}}
-"YCM--------------------------{{{
+"---------------------------------}}}
+"TAGBAR---------------------------{{{
+nnoremap <F3> :TagbarToggle<CR>
+"LANGS--------{{{
+"-------------}}}
+"---------------------------------}}}
+"NERDTree-------------------------{{{ 
+augroup nerdtree
+	autocmd!
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+augroup END
+noremap <F2> :NERDTreeToggle<CR>
+"---------------------------------}}}
+"YCM------------------------------{{{
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_key_invoke_completion = '<C-Space>'
-"}}}
-"LATEX-----------------------{{{
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+"---------------------------------}}}
+"ULTISNIPS------------------------{{{
+let g:UltiSnipsSnippetsDir="~/.vim/snips"
+let g:UltiSnipsSnippetDirectories=["snips", "UltiSnips"]
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+if !exists("g:UltiSnipsJumpForwardTrigger")
+	let g:UltiSnipsJumpForwardTrigger="<tab>"
+endif
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"---------------------------------}}}
+"LATEX----------------------------{{{
 " IMPORTANT: grep will sometimes skip displaying the file name if you"
 " " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
@@ -197,16 +205,16 @@ let g:LatexBox_complete_inlineMath = 1
 set winaltkeys=no
 nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 map <Leader>lb :<C-U>exec '!biber '.Tex_GetMainFileName(':p:t:r')<CR>
-"}}}
-"NODEJS---------------------------{{{
+"--------------------------------}}}
+"NODEJS--------------------------{{{
 ""<C-w>f to open fle under curser in vsplit
 autocmd User Node
   \ if &filetype == "javascript" |
   \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
   \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
   \ endif
-"}}}
-"GO-LANG------------------------------- {{{
+"--------------------------------}}}
+"GO-LANG-------------------------{{{
 ":GoPath /home/$USER/work/go
 ":GoInstallBinaries
 au FileType go nmap <leader>r <Plug>(go-run)
@@ -241,4 +249,4 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
     \ }
-"}}}
+"---------------------------------}}}
