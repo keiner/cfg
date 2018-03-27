@@ -58,11 +58,9 @@ set foldenable
 "FILETYPE FOLDING-------{{{
 augroup folding
 	autocmd!
-	autocmd FileType vim setlocal foldmethod=marker
-	autocmd FileType conf setlocal foldmethod=marker
-	autocmd FileType tex setlocal foldmethod=indent
-	autocmd FileType sh setlocal foldmethod=indent
-	autocmd FileType html setlocal foldmethod=indent
+	autocmd FileType vim,conf setlocal foldmethod=marker
+	autocmd FileType tex,sh,css setlocal foldmethod=indent
+	autocmd Filetype xhtml,html setlocal foldmethod=syntax
 augroup END
 "-----------------------}}}
 "CREATE FOLDMARKS-------{{{
@@ -89,20 +87,18 @@ noremap fj <C-W><C-J>
 noremap fk <C-W><C-K>
 noremap fl <C-W><C-L>
 noremap fh <C-W><C-H>
-noremap fn :vnew<CR>
+noremap fn :vnew<CR> 
 noremap fm :new<CR>
-noremap fv :split<CR>
-noremap fb :vsplit<CR>
-noremap ff <C-W>f
-noremap fc :q<CR>
+noremap fv :split<CR> 	"split current file
+noremap fb :vsplit<CR> 	"vsplit current file
+noremap ff <C-W>f 	"open file under curser in new split
+noremap fc :q<CR> 	"close file
 "----------------------------------}}}
 "OTHER MAPPINGS--------------------{{{
 " save as sudo when I forgot to start vim using sudo.
 cnoremap w!! w !sudo tee  > /dev/null %
 "kj for esc
 inoremap kj <esc>
-"jh for :
-noremap jh :
 "SPELL-CHECK
 noremap <F8>  :setlocal spell spelllang=de,en <return>
 noremap <F9> :setlocal spell& <return>
@@ -167,6 +163,9 @@ let g:UltiSnipsSnippetsDir="~/.vim/snips"
 let g:UltiSnipsSnippetDirectories=["snips", "UltiSnips"]
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
+"if exists("g:UltiSnipsExpandTrigger")
+"inoremap <CR> <esc>:call UltiSnips#ExpandSnippet()<cr>
+"endif
 let g:UltiSnipsExpandTrigger="<tab>"
 if !exists("g:UltiSnipsJumpForwardTrigger")
 	let g:UltiSnipsJumpForwardTrigger="<tab>"

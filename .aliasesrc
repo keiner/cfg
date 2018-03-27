@@ -8,13 +8,17 @@ alias fair="vim ~/.faircafe"
 #### RASPBERRY-PI
 #alias ra="PULSE_SINK=Remote"
 alias rack="LANG=C pactl list | grep -A2 'Sink #' | grep 'Name: ' | cut -d\" \" -f2"
-alias pi='ssh pi@10.230.55.166'
+alias pi='tmux renamew pi && ssh pi@10.230.55.166'
 alias vncpi='krdc 192.168.1.37:1'
 alias mntpihome='sshfs pi@raspberrypi:/home/pi ~/work/mnt/pihome/'
 alias usbpi='sshfs pi@raspberrypi:/media/usb0 ~/work/mnt/usbpi/'
 alias mntpi='sshfs pi@raspberrypi:/ ~/work/mnt/pi/'
 alias keinpi='fusermount -u ~/work/mnt/pi/'
 alias keinpihome='fusermount -u ~/work/mnt/pihome/'
+alias tantesb="tmux renamew tante-sb && ssh ich@tante-soeren.ddns.net"
+alias tantesbl="tmux renamew tante-sbl && ssh ich@192.168.178.45"
+alias tantes="tmux renamew tante-s && ssh root@tante-soeren.de"
+
 
 #### SYSTEM 
 alias sagi='sudo apt-get install'
