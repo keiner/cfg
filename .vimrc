@@ -10,7 +10,7 @@ Plugin 'gmarik/Vundle.vim'
 "PLUGINS----------{{{
 Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'godlygeek/tabular' 
+Plugin 'godlygeek/tabular'
 Plugin 'mtth/cursorcross.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
@@ -19,48 +19,53 @@ Plugin 'vim-latex/vim-latex'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
+Plugin 'Chiel92/vim-autoformat'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
- " Put your non-Plugin stuff after this line
+" Put your non-Plugin stuff after this line
 "-----------------}}}
-"----------------------------------}}} 
+"----------------------------------}}}
+"PATHOGEN--------------------------{{{
+execute pathogen#infect()
+"----------------------------------}}}
 "GENERAL SETTINGS------------------{{{
 let mapleader = ","
 set autoindent
-syntax enable 		"Aktiviert Syntax-Highlighting 
+syntax enable		"Aktiviert Syntax-Highlighting
 "g:cursorcross_dynamic = 'clw'
 ":set background=dark
 "colorscheme solarized "Farbschema einstellen
-set wildmenu 		"Akt Vervollständigung im menu
+set wildmenu		"Akt Vervollständigung im menu
 set mouse=a		"Aktiviert Maus Unterstützung
-":set list 		"nicht druckbare Zeichen anzeigen(Zeilenende,etc)
+":set list		"nicht druckbare Zeichen anzeigen(Zeilenende,etc)
 set splitbelow
 set splitright
-set runtimepath^=~/.vim/bundle/node 
+set runtimepath^=~/.vim/bundle/node
 "----------------------------------}}}
 "LINE AND COLUMN NUMBERING---------{{{
 set ruler
-set number 
+set number
 set invrelativenumber
 "Relative zeilennummerierung
- nmap ^ :set invrelativenumber<CR> " Toggle relative line number
- "---------------------------------}}}
+nmap ^ :set invrelativenumber<CR> " Toggle relative line number
+"---------------------------------}}}
 "SEARCH OPTIONS--------------------{{{
 set ignorecase "Groß/klein bei Suche ignorieren
 set incsearch "Während eingaben suchen"
 set hlsearch "Markiert alle Such Ergebnisse
-nnoremap <CR> :noh<CR> 
+nnoremap <CR> :noh<CR>
 "----------------------------------}}}
 "FOLDING---------------------------{{{
 set foldenable
 "set foldmethod=marker
 "FILETYPE FOLDING-------{{{
 augroup folding
-	autocmd!
-	autocmd FileType vim,conf setlocal foldmethod=marker
-	autocmd FileType tex,sh,css setlocal foldmethod=indent
-	autocmd Filetype xhtml,html setlocal foldmethod=syntax
+	au!
+	au FileType vim,conf setlocal foldmethod=marker
+	au FileType tex,sh,css setlocal foldmethod=indent
+	au Filetype xhtml,html,json setlocal foldmethod=syntax
+	au FileType javascript setlocal foldmethod=syntax
 augroup END
 "-----------------------}}}
 "CREATE FOLDMARKS-------{{{
@@ -87,32 +92,42 @@ noremap fj <C-W><C-J>
 noremap fk <C-W><C-K>
 noremap fl <C-W><C-L>
 noremap fh <C-W><C-H>
-noremap fn :vnew<CR> 
+noremap fn :vnew<CR>
 noremap fm :new<CR>
-noremap fv :split<CR> 	"split current file
-noremap fb :vsplit<CR> 	"vsplit current file
-noremap ff <C-W>f 	"open file under curser in new split
-noremap fc :q<CR> 	"close file
+noremap fv :split<CR>			"split current file
+noremap fb :vsplit<CR>			"vsplit current file
+noremap ff <C-W>f			"open file under curser in new split
+noremap fF :vertical wincmd f <CR> 	"open file under curser in new vsplit
+noremap fc :q<CR>			"close file
+"RESIZE SPLITS
+noremap fJ <C-W><C-J>
+noremap fK <C-W><C-K>
+noremap fL :vertical resize +5<CR>
+noremap fH :vertical resize -5<CR>
 "----------------------------------}}}
 "OTHER MAPPINGS--------------------{{{
 " save as sudo when I forgot to start vim using sudo.
 cnoremap w!! w !sudo tee  > /dev/null %
 "kj for esc
 inoremap kj <esc>
+"AUTOFORMAT
+noremap <F3> :Autoformat<CR>
 "SPELL-CHECK
 noremap <F8>  :setlocal spell spelllang=de,en <return>
 noremap <F9> :setlocal spell& <return>
 "Quickly open/reload vimrc
-noremap <F10> :source $MYVIMRC<CR> 
+noremap <F10> :source $MYVIMRC<CR>
 nnoremap <leader>v :tabnew ~/.vimrc<CR>
 "Quickly open a tmux split in working directory
-noremap <F11> :!tmux split-window -l 10 -c %:p:h<CR> 
+noremap <F11> :!tmux split-window -l 10 -c %:p:h<CR>
 "Open split and execute file in bash
-nnoremap <leader>x :!tmux split-window -l 10 -c %:p:h  'bash %:p;read'<CR> 
+nnoremap <leader>x :!tmux split-window -l 10 -c %:p:h  'bash %:p;read'<CR>
 nnoremap <leader>X :!tmux split-window -l 10 -c %:p:h  'bash %:p;read'<left><left><left><left><left><left>
 "yank&put to strg-c/strg-v
 vnoremap <C-c> "+y
 "noremap <C-v> "+p
+"mark all text
+nnoremap <C-a> ggVGG
 "----------------------------------}}}
 "AUTO COMPLETE --------------------{{{
 iabbrev uu ubuntu-users
@@ -121,28 +136,28 @@ iabbrev """ """"""""""
 iabbrev $$$ $$$$$$$$$$
 iabbrev bbang #!/bin/bash
 "pannellum
-iabbrev hotspot 
-\<CR>{
-\<CR>"pitch": <++>,
-\<CR>"yaw": <++>,
-\<CR>"hfov": 120,
-\<CR>"type": "scene",
-\<CR>"text": "<++>",
-\<CR>"sceneId": "<++>",
-\<CR>"targetYaw": <++>,
-\<CR>"targetPitch": <++>
-\<CR>}<esc>8k<C-j>
+iabbrev hotspot
+			\<CR>{
+			\<CR>"pitch": <++>,
+			\<CR>"yaw": <++>,
+			\<CR>"hfov": 120,
+			\<CR>"type": "scene",
+			\<CR>"text": "<++>",
+			\<CR>"sceneId": "<++>",
+			\<CR>"targetYaw": <++>,
+			\<CR>"targetPitch": <++>
+			\<CR>}<esc>8k<C-j>
 "---------------------------------}}}
 "FORMATING------------------------{{{
 noremap > >>
 noremap < <<
 "---------------------------------}}}
 "TAGBAR---------------------------{{{
-nnoremap <F3> :TagbarToggle<CR>
+"nnoremap <F3> :TagbarToggle<CR>
 "LANGS--------{{{
 "-------------}}}
 "---------------------------------}}}
-"NERDTree-------------------------{{{ 
+"NERDTree-------------------------{{{
 augroup nerdtree
 	autocmd!
 	autocmd StdinReadPre * let s:std_in=1
@@ -190,24 +205,44 @@ let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat = 'pdf'
 "let g:Tex_MultipleCompileFormats = 'pdf,dv,dvi'
 let g:Tex_CompileRule_pdf = 'arara -v $*'
-let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*' 
-let g:Tex_GotoError = 0 
-let g:Tex_ViewRule_pdf = 'evince' 
+let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode $*'
+let g:Tex_GotoError = 0
+let g:Tex_ViewRule_pdf = 'evince'
 let g:LatexBox_complete_inlineMath = 1
 set winaltkeys=no
 nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 map <Leader>lb :<C-U>exec '!biber '.Tex_GetMainFileName(':p:t:r')<CR>
+"--------------------------------}}}
+"JAVASCRIPT----------------------{{{
+
+let g:javascript_plugin_jsdoc = 1
+"let g:javascript_plugin_ngdoc = 1
+"let g:javascript_plugin_flow = 1
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+let g:javascript_conceal_noarg_arrow_function = "🞅"
+let g:javascript_conceal_underscore_arrow_function = "🞅"
+map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR> 
 "--------------------------------}}}
 "NODEJS--------------------------{{{
 ""<C-w>f to open fle under curser in vsplit
 augroup node
 	autocmd!
 	autocmd User Node
-		\ if &filetype == "javascript" |
-		\   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
-		\   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
-		\ endif
+				\ if &filetype == "javascript" |
+				\   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+				\   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+				\ endif
 augroup END
+
 "--------------------------------}}}
 "GO-LANG-------------------------{{{
 ":GoPath /home/$USER/work/go
@@ -218,30 +253,30 @@ au FileType go nnoremap <leader>b :make<CR>
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-    \ }
+			\ 'ctagstype' : 'go',
+			\ 'kinds'     : [
+			\ 'p:package',
+			\ 'i:imports:1',
+			\ 'c:constants',
+			\ 'v:variables',
+			\ 't:types',
+			\ 'n:interfaces',
+			\ 'w:fields',
+			\ 'e:embedded',
+			\ 'm:methods',
+			\ 'r:constructor',
+			\ 'f:functions'
+			\ ],
+			\ 'sro' : '.',
+			\ 'kind2scope' : {
+			\ 't' : 'ctype',
+			\ 'n' : 'ntype'
+			\ },
+			\ 'scope2kind' : {
+			\ 'ctype' : 't',
+			\ 'ntype' : 'n'
+			\ },
+			\ 'ctagsbin'  : 'gotags',
+			\ 'ctagsargs' : '-sort -silent'
+			\ }
 "---------------------------------}}}

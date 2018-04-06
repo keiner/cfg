@@ -2,6 +2,7 @@
 alias itp="cd /home/keiner/Dokumente/ITP/Bericht/ && vim Hausarbeit.tex"
 alias dip="vim /home/keiner/Dokumente/UNI/Diplom/latex/Diplomarbeit.tex"
 alias laden="cd /home/keiner/Dokumente/laden/ && vim"
+alias www="cd /var/www/html"
 #### LISTEN
 
 alias fair="vim ~/.faircafe"
