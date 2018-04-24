@@ -62,10 +62,10 @@ set foldenable
 "FILETYPE FOLDING-------{{{
 augroup folding
 	au!
-	au FileType vim,conf setlocal foldmethod=marker
+	"find filetype with  :set ft ? 
+	au FileType vim,tmux,conf setlocal foldmethod=marker
 	au FileType tex,sh,css setlocal foldmethod=indent
-	au Filetype xhtml,html,json setlocal foldmethod=syntax
-	au FileType javascript setlocal foldmethod=syntax
+	au Filetype xhtml,html,json,javascript setlocal foldmethod=syntax
 augroup END
 "-----------------------}}}
 "CREATE FOLDMARKS-------{{{
