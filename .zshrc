@@ -90,6 +90,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 if [ -f ~/cfg/.aliasesrc ]; then
 	. ~/cfg/.aliasesrc
 fi
+#scripts
+. ~/cfg/scripts*
 
 # verbindet tmux session und erstellt bei bedarf neue
 
