@@ -91,7 +91,7 @@ if [ -f ~/cfg/.aliasesrc ]; then
 	. ~/cfg/.aliasesrc
 fi
 #scripts
-. ~/cfg/scripts/*
+. ~/cfg/scripts/.play
 
 # verbindet tmux session und erstellt bei bedarf neue
 
