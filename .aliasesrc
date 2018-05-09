@@ -48,6 +48,7 @@ alias gstat="git status"
 ##### TMUX/TMUXINATOR-------------------------{{{
 alias mux='tmuxinator'
 alias tk="tmux kill-server"
+alias tks="tmux kill-session && ta"
 alias tax="tmux attach"
 alias tlist="tmux list-windows"
 alias td="tmux detach"

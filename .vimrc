@@ -8,18 +8,19 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 "-----------------}}}
 "PLUGINS----------{{{
-Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'godlygeek/tabular'
-Plugin 'mtth/cursorcross.vim'
+Plugin 'tmux-plugins/vim-tmux'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'mtth/cursorcross.vim'
 Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'godlygeek/tabular'
 Plugin 'vim-latex/vim-latex'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
-Plugin 'Chiel92/vim-autoformat'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -32,28 +33,28 @@ execute pathogen#infect()
 "GENERAL SETTINGS------------------{{{
 let mapleader = ","
 set autoindent
-syntax enable		"Aktiviert Syntax-Highlighting
+syntax enable		
 "g:cursorcross_dynamic = 'clw'
 ":set background=dark
-"colorscheme solarized "Farbschema einstellen
-set wildmenu		"Akt Vervollständigung im menu
-set mouse=a		"Aktiviert Maus Unterstützung
-":set list		"nicht druckbare Zeichen anzeigen(Zeilenende,etc)
+"colorscheme solarized 
+set wildmenu		"autocomplete in commandline mode
+set mouse=a		"activate mouse
+":set list		"show not printable stuff
 set splitbelow
 set splitright
 set runtimepath^=~/.vim/bundle/node
+set autochdir 		"working dir is always file dir
 "----------------------------------}}}
 "LINE AND COLUMN NUMBERING---------{{{
 set ruler
 set number
 set invrelativenumber
-"Relative zeilennummerierung
 nmap ^ :set invrelativenumber<CR> " Toggle relative line number
 "---------------------------------}}}
 "SEARCH OPTIONS--------------------{{{
-set ignorecase "Groß/klein bei Suche ignorieren
-set incsearch "Während eingaben suchen"
-set hlsearch "Markiert alle Such Ergebnisse
+set ignorecase 
+set incsearch 
+set hlsearch 
 nnoremap <CR> :noh<CR>
 "----------------------------------}}}
 "FOLDING---------------------------{{{
@@ -98,6 +99,7 @@ noremap fv :split<CR>			"split current file
 noremap fb :vsplit<CR>			"vsplit current file
 noremap ff <C-W>f			"open file under curser in new split
 noremap fF :vertical wincmd f <CR> 	"open file under curser in new vsplit
+noremap FF :vsplit <cfile><cr> 		"create and open file under curser
 noremap fc :q<CR>			"close file
 "RESIZE SPLITS
 noremap fJ <C-W><C-J>
@@ -116,16 +118,19 @@ noremap <F3> :Autoformat<CR>
 noremap <F8>  :setlocal spell spelllang=de,en <return>
 noremap <F9> :setlocal spell& <return>
 "Quickly open/reload vimrc
-noremap <F10> :source $MYVIMRC<CR>
-nnoremap <leader>v :tabnew ~/.vimrc<CR>
+noremap <F10> :source $MYVIMRC<CR>:echo '> > > > > > > > V I M R C - R E L O A D E D ! < < < < < < < <'<CR>
+nnoremap <leader>v :tabnew ~/cfg/.vimrc<CR>
+nnoremap <leader>t :tabnew ~/cfg/.tmux.conf<CR>
+nnoremap <leader>u :UltiSnipsEdit<CR>:vertical resize -40<CR>
 "Quickly open a tmux split in working directory
 noremap <F11> :!tmux split-window -l 10 -c %:p:h<CR>
 "Open split and execute file in bash
 nnoremap <leader>x :!tmux split-window -l 10 -c %:p:h  'bash %:p;read'<CR>
 nnoremap <leader>X :!tmux split-window -l 10 -c %:p:h  'bash %:p;read'<left><left><left><left><left><left>
-"yank&put to strg-c/strg-v
-vnoremap <C-c> "+y
-"noremap <C-v> "+p
+"yank&put to system clipboard with strg-c/strg-v
+vnoremap <C-c> "*y
+nnoremap <C-v> "*p
+inoremap <C-v> <esc>"*pa
 "mark all text
 nnoremap <C-a> ggVGG
 "----------------------------------}}}
@@ -174,13 +179,14 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "---------------------------------}}}
 "ULTISNIPS------------------------{{{
-let g:UltiSnipsSnippetsDir="~/.vim/snips"
-let g:UltiSnipsSnippetDirectories=["snips", "UltiSnips"]
+"let g:UltiSnipsSnippetsDir="~/.vim/snips"
+"let g:UltiSnipsSnippetDirectories=["snips", "UltiSnips"]
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 "if exists("g:UltiSnipsExpandTrigger")
 "inoremap <CR> <esc>:call UltiSnips#ExpandSnippet()<cr>
 "endif
+inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<CR>"
 let g:UltiSnipsExpandTrigger="<tab>"
 if !exists("g:UltiSnipsJumpForwardTrigger")
 	let g:UltiSnipsJumpForwardTrigger="<tab>"
