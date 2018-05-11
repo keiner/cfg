@@ -64,7 +64,7 @@ set foldenable
 augroup folding
 	au!
 	"find filetype with  :set ft ? 
-	au FileType vim,tmux,conf setlocal foldmethod=marker
+	au FileType vim,tmux,conf,zsh setlocal foldmethod=marker
 	au FileType tex,sh,css setlocal foldmethod=indent
 	au Filetype xhtml,html,json,javascript setlocal foldmethod=syntax
 augroup END
@@ -186,7 +186,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 "if exists("g:UltiSnipsExpandTrigger")
 "inoremap <CR> <esc>:call UltiSnips#ExpandSnippet()<cr>
 "endif
-inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<CR>"
+"inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>" : "\<CR>"
 let g:UltiSnipsExpandTrigger="<tab>"
 if !exists("g:UltiSnipsJumpForwardTrigger")
 	let g:UltiSnipsJumpForwardTrigger="<tab>"

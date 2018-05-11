@@ -1,0 +1,29 @@
+#!/bin/bash
+
+interpr(){
+#if [[ $# -eq 0 ]]; then
+	#echo " Usage: interpr NAME"
+#else
+	find -iname "*$1*" -exec echo {}  \;
+	read   "input?Are you Sure u want to move all files to /home/pi/MUSIK/band/$1? [Y/N]" 
+	
+	echo $input
+	case $input in
+		[yY][eE][sS]|[yY])
+			echo "creating dir /home/pi/MUSIK/bands/$1"
+			mkdir /home/pi/MUSIK/bands/$1
+			find -iname "*$1*"  -exec mv {} /home/pi/MUSIK/bands/$1 \;
+			;;
+	
+		[nN][oO]|[nN])
+			echo "aborting"
+			;;
+		*)
+			echo "Invalid input..."
+			;;
+	esac
+#fi
+}
+
+
+

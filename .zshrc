@@ -1,3 +1,4 @@
+#ZSH THEME-----------------------{{{
 # Path to custom ZSH Theme
 export ZSH_CUSTOM=$HOME/cfg/
 # Path to your oh-my-zsh installation.
@@ -8,11 +9,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="bureau_custom"
-#ZSH_THEME="amuse"
-#ZSH_THEME="mortalscumbag"
-#ZSH_THEME="dpoggi"
-
-
+#-----------------------}}}
+#STUFF---------------------{{{
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -51,11 +49,13 @@ ZSH_THEME="bureau_custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+## -----------------------}}}
+#PLUGINS-----------------------{{{
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
+#-----------------------}}}
+# USER CONFIGURATION-----------------------{{{
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -63,65 +63,45 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
+## -----------------------}}}
+#ALI  -----------------------{{{
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-#.aliasesrc hier einfügen:  
 if [ -f ~/cfg/.aliasesrc ]; then
 	. ~/cfg/.aliasesrc
 fi
-#scripts
+#-----------------------}}}
+#SCRIPTS-----------------------{{{
 . ~/cfg/scripts/.play
-
-# verbindet tmux session und erstellt bei bedarf neue
-
+. ~/cfg/scripts/.interpr
+#-----------------------}}}
+#TMUX-----------------------{{{
 if [ -z $TMUX ];   then                 
 	  /usr/bin/tmux attach || /usr/bin/tmux new
   fi 
-
-  
+#-----------------------}}}
+ #TODO LIST -----------------------{{{
 if [ -f ~/.todo ]; then
     cat ~/.todo
 fi      
-if [ -f ~/.faircafe ]; then
-    cat ~/.faircafe
-fi      
-
-
-  
-  
-# standard editor vim
+#-----------------------}}}
+#EDITOR-----------------------{{{
 export EDITOR='vim'
-
+#-----------------------}}}
+ #REMOTE SOUND-----------------------{{{
+# pactl load-module module-tunnel-sink-new server=minnimi sink_name=Remote channels=2 rate=44100
+#-----------------------}}}
+#PERL-----------------------{{{
 PERL_MB_OPT="--install_base \"/home/$USER/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
-
-# remote sound
-# pactl load-module module-tunnel-sink-new server=minnimi sink_name=Remote channels=2 rate=44100
-
-export NVM_DIR="/home/keiner/.nvm"
+#-----------------------}}}
+#NVM-----------------------{{{
+export NVM_DIR="/home/$USER/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-#NODE
-#NVM
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+#-----------------------}}}
