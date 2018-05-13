@@ -33,18 +33,42 @@ execute pathogen#infect()
 "GENERAL SETTINGS------------------{{{
 let mapleader = ","
 set autoindent
-syntax enable		
+syntax enable
 "g:cursorcross_dynamic = 'clw'
 ":set background=dark
-"colorscheme solarized 
+"colorscheme solarized
 set wildmenu		"autocomplete in commandline mode
 set mouse=a		"activate mouse
 ":set list		"show not printable stuff
 set splitbelow
 set splitright
 set runtimepath^=~/.vim/bundle/node
-set autochdir 		"working dir is always file dir
+set autochdir		"working dir is always file dir
 "----------------------------------}}}
+"STATUSLINE------------------------{{{
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+set laststatus=2		"allways show statusline
+set statusline=
+set statusline+=%{StatuslineGit()}
+set statusline+=%F		" Path to the file
+set statusline+=%{ObsessionStatus()}
+set statusline+=%=		"swich to right side
+set statusline+=%y		" Filetype of the file
+set statusline+=\ c:
+set statusline+=%c		"current column
+set statusline+=\ l:
+set statusline+=%l		" Current line
+set statusline+=/		" Separator
+set statusline+=%L		" Total lines
+set statusline+=\ %p%%
+""---------------------------------}}}
 "LINE AND COLUMN NUMBERING---------{{{
 set ruler
 set number
@@ -52,9 +76,9 @@ set invrelativenumber
 nmap ^ :set invrelativenumber<CR> " Toggle relative line number
 "---------------------------------}}}
 "SEARCH OPTIONS--------------------{{{
-set ignorecase 
-set incsearch 
-set hlsearch 
+set ignorecase
+set incsearch
+set hlsearch
 nnoremap <CR> :noh<CR>
 "----------------------------------}}}
 "FOLDING---------------------------{{{
@@ -63,7 +87,7 @@ set foldenable
 "FILETYPE FOLDING-------{{{
 augroup folding
 	au!
-	"find filetype with  :set ft ? 
+	"find filetype with  :set ft ?
 	au FileType vim,tmux,conf,zsh setlocal foldmethod=marker
 	au FileType tex,sh,css setlocal foldmethod=indent
 	au Filetype xhtml,html,json,javascript setlocal foldmethod=syntax
@@ -85,6 +109,7 @@ noremap <S-H> 0
 "TAB AND SPLIT HANDLING------------{{{
 "MOVING IN TABS
 noremap  tl :tabn<CR>
+noremap  tt :tabn<CR>
 noremap  th :tabp<CR>
 noremap  tn :tabnew<CR>
 noremap  tc :tabclose<CR>
@@ -98,8 +123,8 @@ noremap fm :new<CR>
 noremap fv :split<CR>			"split current file
 noremap fb :vsplit<CR>			"vsplit current file
 noremap ff <C-W>f			"open file under curser in new split
-noremap fF :vertical wincmd f <CR> 	"open file under curser in new vsplit
-noremap FF :vsplit <cfile><cr> 		"create and open file under curser
+noremap fF :vertical wincmd f <CR>	"open file under curser in new vsplit
+noremap FF :vsplit <cfile><cr>		"create and open file under curser
 noremap fc :q<CR>			"close file
 "RESIZE SPLITS
 noremap fJ <C-W><C-J>
@@ -196,6 +221,14 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 "---------------------------------}}}
+"SESSION HANDLING--------------{{{
+nnoremap <leader>q :qa<CR>
+nnoremap <leader>s :Obsession ~/.vim/session.vim<CR>
+nnoremap <leader>r :source ~/.vim/session.vim<CR>
+if(argc() == 0)
+  au VimEnter * nested :source ~/.vim/session.vim
+endif
+"---------------------------------}}}
 "LATEX----------------------------{{{
 " IMPORTANT: grep will sometimes skip displaying the file name if you"
 " " search in a singe file. This will confuse Latex-Suite. Set your grep
@@ -236,7 +269,7 @@ let g:javascript_conceal_super                = "Ω"
 let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
-map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR> 
+map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 "--------------------------------}}}
 "NODEJS--------------------------{{{
 ""<C-w>f to open fle under curser in vsplit
