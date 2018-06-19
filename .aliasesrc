@@ -23,6 +23,7 @@ alias tantes="tmux renamew tante-s && ssh root@tante-soeren.de"
 alias sagi='sudo apt-get install'
 alias update='sudo apt-get update && sudo apt-get dist-upgrade'
 alias lisa='ls -lisa'
+alias lll="l|less"
 alias neu="sudo shutdown -r now"
 alias w5="watch -n 0,5"
 #---------------------------------------------}}}
@@ -62,11 +63,11 @@ alias zex='exec zsh -$-'
 alias texec='tmux source-file ~/.tmux.conf'
 #---------------------------------------------}}}
 ###### CONFIG/RC -----------------------------{{{
-alias zrc='vim ~/.zshrc'
-alias brc='vim ~/.bashrc'
-alias frc='vim ~/.fishrc'
-alias tcf='vim ~/.tmux.conf'
-alias vrc='vim ~/.vimrc'
+alias zrc='vim ~/cfg/.zshrc'
+alias brc='vim ~/cfg/.bashrc'
+alias frc='vim ~/cfg/.fishrc'
+alias tcf='vim ~/cfg/.tmux.conf'
+alias vrc='vim ~/cfg/.vimrc'
 alias ali='vim ~/cfg/.aliasesrc'
 #---------------------------------------------}}}
 ###### SHELL SPECIAL--------------------------{{{

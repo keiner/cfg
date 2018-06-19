@@ -47,12 +47,12 @@ set autochdir		"working dir is always file dir
 "----------------------------------}}}
 "STATUSLINE------------------------{{{
 function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+	return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
 function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+	let l:branchname = GitBranch()
+	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 set laststatus=2		"allways show statusline
 set statusline=
@@ -83,13 +83,49 @@ nnoremap <CR> :noh<CR>
 "----------------------------------}}}
 "FOLDING---------------------------{{{
 set foldenable
-"set foldmethod=marker
+" FOLDTEXT-------------{{{
+"set foldtext=getline(v:foldstart+0)
+"set foldtext=MyFoldText()
+function! MyFoldText()
+	let line = getline(v:foldstart)
+	if match( line, '^[ \t]*\(\/\*\|\/\/\)[*/\\]*[ \t]*$' ) == 0
+		let initial = substitute( line, '^\([ \t]\)*\(\/\*\|\/\/\)\(.*\)', '\1\2', '' )
+		let linenum = v:foldstart + 1
+		while linenum < v:foldend
+			let line = getline( linenum )
+			let comment_content = substitute( line, '^\([ \t\/\*]*\)\(.*\)$', '\2', 'g' )
+			if comment_content != ''
+				break
+			endif
+			let linenum = linenum + 1
+		endwhile
+		let sub = initial . ' ' . comment_content
+	else
+		let sub = line
+		let startbrace = substitute( line, '^.*{[ \t]*$', '{', 'g')
+		if startbrace == '{'
+			let line = getline(v:foldend)
+			let endbrace = substitute( line, '^[ \t]*}\(.*\)$', '}', 'g')
+			if endbrace == '}'
+				let sub = sub.substitute( line, '^[ \t]*}\(.*\)$', '...}\1', 'g')
+			endif
+		endif
+	endif
+	let n = v:foldend - v:foldstart + 1
+	let info = " " . n . " lines"
+	let sub = sub . "                                                                                                                  "
+	let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
+	let fold_w = getwinvar( 0, '&foldcolumn' )
+	let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
+	return sub . info
+endfunction
+"-----------------------}}}
 "FILETYPE FOLDING-------{{{
 augroup folding
 	au!
 	"find filetype with  :set ft ?
 	au FileType vim,tmux,conf,zsh setlocal foldmethod=marker
-	au FileType tex,sh,css setlocal foldmethod=indent
+	au FileType sh,css setlocal foldmethod=indent
 	au Filetype xhtml,html,json,javascript setlocal foldmethod=syntax
 augroup END
 "-----------------------}}}
@@ -146,6 +182,7 @@ noremap <F9> :setlocal spell& <return>
 noremap <F10> :source $MYVIMRC<CR>:echo '> > > > > > > > V I M R C - R E L O A D E D ! < < < < < < < <'<CR>
 nnoremap <leader>v :tabnew ~/cfg/.vimrc<CR>
 nnoremap <leader>t :tabnew ~/cfg/.tmux.conf<CR>
+nnoremap <leader>a :tabnew ~/cfg/.aliasesrc<CR>
 nnoremap <leader>u :UltiSnipsEdit<CR>:vertical resize -40<CR>
 "Quickly open a tmux split in working directory
 noremap <F11> :!tmux split-window -l 10 -c %:p:h<CR>
@@ -178,16 +215,16 @@ iabbrev hotspot
 			\<CR>"targetPitch": <++>
 			\<CR>}<esc>8k<C-j>
 "---------------------------------}}}
-"FORMATING------------------------{{{
+"FORMATING-------------------------{{{
 noremap > >>
 noremap < <<
 "---------------------------------}}}
-"TAGBAR---------------------------{{{
+"TAGBAR----------------------------{{{
 "nnoremap <F3> :TagbarToggle<CR>
 "LANGS--------{{{
 "-------------}}}
 "---------------------------------}}}
-"NERDTree-------------------------{{{
+"NERDTree--------------------------{{{
 augroup nerdtree
 	autocmd!
 	autocmd StdinReadPre * let s:std_in=1
@@ -195,7 +232,7 @@ augroup nerdtree
 augroup END
 noremap <F2> :NERDTreeToggle<CR>
 "---------------------------------}}}
-"YCM------------------------------{{{
+"YCM-------------------------------{{{
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_key_invoke_completion = '<C-Space>'
 " make YCM compatible with UltiSnips (using supertab)
@@ -203,7 +240,7 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "---------------------------------}}}
-"ULTISNIPS------------------------{{{
+"ULTISNIPS-------------------------{{{
 "let g:UltiSnipsSnippetsDir="~/.vim/snips"
 "let g:UltiSnipsSnippetDirectories=["snips", "UltiSnips"]
 " Trigger configuration. Do not use <tab> if you use
@@ -221,15 +258,15 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 "---------------------------------}}}
-"SESSION HANDLING--------------{{{
+"SESSION HANDLING------------------{{{
 nnoremap <leader>q :qa<CR>
 nnoremap <leader>s :Obsession ~/.vim/session.vim<CR>
 nnoremap <leader>r :source ~/.vim/session.vim<CR>
-if(argc() == 0)
-  au VimEnter * nested :source ~/.vim/session.vim
-endif
+"if(argc() == 0)
+"au VimEnter * nested :source ~/.vim/session.vim
+"endif
 "---------------------------------}}}
-"LATEX----------------------------{{{
+"LATEX-----------------------------{{{
 " IMPORTANT: grep will sometimes skip displaying the file name if you"
 " " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
@@ -251,8 +288,14 @@ let g:LatexBox_complete_inlineMath = 1
 set winaltkeys=no
 nnoremap <leader>ch :!evince ~/cheatsheets/vimlatexqrc.pdf & <CR><CR>
 map <Leader>lb :<C-U>exec '!biber '.Tex_GetMainFileName(':p:t:r')<CR>
+"FOLDTEXT---------------{{{
+"let g:tex_fold_override_foldtext = 1
+"let g:Tex_FoldedSections = 'part|addpart,chapter|addchap,section|addsec,subsection,subsubsection,paragraph,subparagraph'
+"let g:Tex_FoldedEnvironments = 'document'
+let g:Tex_FoldedMisc = 'preamble,item'
+"-----------------------}}}
 "--------------------------------}}}
-"JAVASCRIPT----------------------{{{
+"JAVASCRIPT------------------------{{{
 
 let g:javascript_plugin_jsdoc = 1
 "let g:javascript_plugin_ngdoc = 1
@@ -271,7 +314,7 @@ let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
 map <leader>c :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 "--------------------------------}}}
-"NODEJS--------------------------{{{
+"NODEJS----------------------------{{{
 ""<C-w>f to open fle under curser in vsplit
 augroup node
 	autocmd!
@@ -283,7 +326,7 @@ augroup node
 augroup END
 
 "--------------------------------}}}
-"GO-LANG-------------------------{{{
+"GO-LANG---------------------------{{{
 ":GoPath /home/$USER/work/go
 ":GoInstallBinaries
 au FileType go nmap <leader>r <Plug>(go-run)
