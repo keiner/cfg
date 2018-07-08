@@ -84,7 +84,7 @@ nnoremap <CR> :noh<CR>
 "FOLDING---------------------------{{{
 set foldenable
 " FOLDTEXT-------------{{{
-"set foldtext=getline(v:foldstart+0)
+set foldtext=getline(v:foldstart+0)
 "set foldtext=MyFoldText()
 function! MyFoldText()
 	let line = getline(v:foldstart)
@@ -136,8 +136,8 @@ nnoremap fe o-----------------------}}}<esc>:call<space>NERDComment(1,"comment")
 "----------------------------------}}}
 "MOVING----------------------------{{{
 "Faster moving in lines
-noremap J 5j
-noremap K 5k
+noremap <C-j> 5j
+noremap <C-k> 5k
 "Shift h&l for jump to begining and end of line
 noremap <S-L> $
 noremap <S-H> 0

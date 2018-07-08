@@ -1,5 +1,6 @@
 # oh-my-zsh Bureau Theme
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=255'
 ### NVM
 
 ZSH_THEME_NVM_PROMPT_PREFIX="%B⬡%b "

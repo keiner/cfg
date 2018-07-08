@@ -52,7 +52,8 @@ ZSH_THEME="bureau_custom"
 ## -----------------------}}}
 #PLUGINS-----------------------{{{
 plugins=(git)
-
+plugins=(zsh-autosuggestions)
+bindkey '^ ' autosuggest-accept
 source $ZSH/oh-my-zsh.sh
 #-----------------------}}}
 # USER CONFIGURATION-----------------------{{{
