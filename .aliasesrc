@@ -36,6 +36,7 @@ alias allip='ip neigh show ' # zeigt alle ips im netzwerk
 alias speed=speedtest-cli
 alias statip='echo "ip bitte" && read ip && sudo service network-manager stop && sudo ifconfig eth0 $ip'
 alias dynip="sudo service network-manager start"
+alias inet="tmux split-window -dh && tmux splitw -d -p 20 'mtr google.de' && tmux select-pane -t 3 && tmux send-keys -t 1 'w5 ifconfig' Enter"
 #---------------------------------------------}}}
 ###### GIT/GITHUB-----------------------------{{{
 alias ga="git add"  #spezifische datei oder "." für alles im ordner wo man ist
@@ -77,14 +78,15 @@ alias lkjh='clear'
 alias be='bildschirm extern'
 alias aus='shutdown -h now'
 alias c="cat"
-#### LISTEN
+#---------------------------------------------}}}
+##### LISTEN----------------------------------{{{
 alias fair="vim ~/.faircafe"
 alias todo="vim ~/.todo"
 alias studi="vim ~/.studi"
 alias fsw="vim ~/.fsw"
 alias laufwerke="sudo blkid -o list -w /dev/null" 
-#--------------------------------------------}}}
-##### CHEAT SHEETS---------------------------{{{
+#---------------------------------------------}}}
+##### CHEAT SHEETS----------------------------{{{
 alias tcs='vim ~/.tmuxcs'
 alias vcs='vim ~/.vimcs'
 alias zcs='vim ~/.zcs'
@@ -92,8 +94,8 @@ alias gitcs='vim ~/.gitcs'
 alias merk="vim ~/.merkzettel"
 alias mucs="vim ~/cheatsheets/mutator"
 alias vlcc="evince ~/cheatsheets/vimlatexqrc.pdf &"
-#--------------------------------------------}}}
-##### SICHERUNG------------------------------{{{
+#---------------------------------------------}}}
+##### SICHERUNG-------------------------------{{{
 alias verteilen='mkdir -p /media/$USER/USB-DATEN/sicherung/verteiler/ && 
 		cp -b /home/$USER/.*rc /media/$USER/USB-DATEN/sicherung/verteiler/ && 
 		cp -b /home/$USER/.*.conf /media/$USER/USB-DATEN/sicherung/verteiler/
@@ -110,10 +112,10 @@ alias rc_sichern='cp -b /home/$USER/.*rc /media/$USER/USB-DATEN/sicherung/$USER/
 alias cfg_sichern='cp -b /home/$USER/.*.conf /media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/'
 alias spell_sichern='cp -b /home/$USER/.vim/spell/de.utf-8.* /media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/'
 alias vorbereitung='sudo mkdir -p /media/$USER/USB-DATEN/sicherung/$USER/ mkdir -p /media/$USER/USB-DATEN/sicherung/$USER/"$(date)"/'
-#-------------------------------------------}}}
- #####TESTS---------------------------------{{{
+#---------------------------------------------}}}
+#####TESTS------------------------------------{{{
 alias doof='echo "sag ja" 
 read name
 echo $name'
 alias node="nodejs --harmony"
-#-------------------------------------------}}}
+#---------------------------------------------}}}
