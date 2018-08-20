@@ -83,6 +83,7 @@ nnoremap <CR> :noh<CR>
 "----------------------------------}}}
 "FOLDING---------------------------{{{
 set foldenable
+set foldmethod=marker
 " FOLDTEXT-------------{{{
 set foldtext=getline(v:foldstart+0)
 "set foldtext=MyFoldText()
@@ -124,9 +125,10 @@ endfunction
 augroup folding
 	au!
 	"find filetype with  :set ft ?
-	au FileType vim,tmux,conf,zsh setlocal foldmethod=marker
+	au FileType txt,vim,tmux,conf,zsh setlocal foldmethod=marker
 	au FileType sh,css setlocal foldmethod=indent
 	au Filetype xhtml,html,json,javascript setlocal foldmethod=syntax
+	au Filetype c setlocal=expr
 augroup END
 "-----------------------}}}
 "CREATE FOLDMARKS-------{{{
