@@ -30,7 +30,7 @@ ZSH_THEME="bureau_custom"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
- #COMPLETION_WAITING_DOTS="true"
+ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -51,12 +51,13 @@ ZSH_THEME="bureau_custom"
 # Add wisely, as too many plugins slow down shell startup.
 ## -----------------------}}}
 #PLUGINS-----------------------{{{
-plugins=(git)
 plugins=(zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/oh-my-zsh.sh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=154'
 #-----------------------}}}
-# USER CONFIGURATION-----------------------{{{
+#USER CONFIGURATION-----------------------{{{
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -80,13 +81,14 @@ fi
 #SCRIPTS-----------------------{{{
 . ~/cfg/scripts/.play
 . ~/cfg/scripts/.interpr
+. ~/cfg/scripts/findi
 #-----------------------}}}
 #TMUX-----------------------{{{
 if [ -z $TMUX ];   then                 
 	  /usr/bin/tmux attach || /usr/bin/tmux new
   fi 
 #-----------------------}}}
- #TODO LIST -----------------------{{{
+#TODO LIST -----------------------{{{
 if [ -f ~/.todo ]; then
     cat ~/.todo
 fi      
@@ -94,7 +96,7 @@ fi
 #EDITOR-----------------------{{{
 export EDITOR='vim'
 #-----------------------}}}
- #REMOTE SOUND-----------------------{{{
+#REMOTE SOUND-----------------------{{{
 # pactl load-module module-tunnel-sink-new server=minnimi sink_name=Remote channels=2 rate=44100
 #-----------------------}}}
 #PERL-----------------------{{{
@@ -106,3 +108,11 @@ export NVM_DIR="/home/$USER/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 #-----------------------}}}
+#FZF-----------------------{{{
+#source /usr/share/fzf/key-bindings.zsh
+#source /usr/share/fzf/completion.zsh
+#}}}
+#KEYMAPS{{{
+setxkbmap -option caps:escape
+##}}}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

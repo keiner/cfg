@@ -1,0 +1,3 @@
+unmap J K
+map h previousTab
+map l nextTab

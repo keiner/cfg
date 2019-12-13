@@ -4,6 +4,8 @@ alias dip="vim /home/keiner/Dokumente/UNI/Diplom/latex/Diplomarbeit.tex"
 alias laden="cd /home/keiner/Dokumente/laden/ && vim"
 alias www="cd /var/www/html"
 alias dma="cd ~/Dokumente/Arbeit/dma/ && vim"
+alias http="/usr/lib/node_modules/http-server/bin/http-server"
+alias fonline='wine ~/spiele/FOnline\ Reloaded/FOnline.exe'
 #---------------------------------------------}}}
 ##### RASPBERRY-PI----------------------------{{{
 #alias ra="PULSE_SINK=Remote"
@@ -24,7 +26,7 @@ alias sagi='sudo apt-get install'
 alias update='sudo apt-get update && sudo apt-get dist-upgrade'
 alias lisa='ls -lisa'
 alias lll="l|less"
-alias neu="sudo shutdown -r now"
+alias neu=" shutdown -r now"
 alias w5="watch -n 0,5"
 #---------------------------------------------}}}
 ##### irssi irc chat--------------------------{{{
@@ -70,6 +72,8 @@ alias frc='vim ~/cfg/.fishrc'
 alias tcf='vim ~/cfg/.tmux.conf'
 alias vrc='vim ~/cfg/.vimrc'
 alias ali='vim ~/cfg/.aliasesrc'
+alias farben='spectrum_ls'
+alias mime='vim /usr/share/applications/mimeinfo.cache'
 #---------------------------------------------}}}
 ###### SHELL SPECIAL--------------------------{{{
 alias et="exit"
@@ -78,8 +82,12 @@ alias lkjh='clear'
 alias be='bildschirm extern'
 alias aus='shutdown -h now'
 alias c="cat"
+alias lib="libreoffice"
+alias ev='evince'
+#alias -g fzf='$(fzf)'
 #---------------------------------------------}}}
 ##### LISTEN----------------------------------{{{
+alias ww="vim ~/vimwiki/index.wiki"
 alias fair="vim ~/.faircafe"
 alias todo="vim ~/.todo"
 alias studi="vim ~/.studi"
@@ -117,5 +125,8 @@ alias vorbereitung='sudo mkdir -p /media/$USER/USB-DATEN/sicherung/$USER/ mkdir 
 alias doof='echo "sag ja" 
 read name
 echo $name'
-alias node="nodejs --harmony"
 #---------------------------------------------}}}
+#NODE-----------------------{{{
+#alias node="nodejs --harmony"
+alias localhost="/usr/lib/node_modules/http-server/bin/http-server"
+##-----------------------}}}
